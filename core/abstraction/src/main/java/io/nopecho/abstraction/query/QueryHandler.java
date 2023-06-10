@@ -6,7 +6,7 @@ public interface QueryHandler {
 
     QueryResult handle(Query query);
 
-    default <T extends Query> T convert(Query query, Class<T> classOfT) {
+    default <T extends Query> T tryCast(Query query, Class<T> classOfT) {
         if (canHandle(query)) {
             return classOfT.cast(query);
         }

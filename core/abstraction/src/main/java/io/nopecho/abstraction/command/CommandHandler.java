@@ -6,7 +6,7 @@ public interface CommandHandler {
 
     void handle(Command command);
 
-    default <T extends Command> T convert(Command command, Class<T> classOfT) {
+    default <T extends Command> T tryCast(Command command, Class<T> classOfT) {
         if (canHandle(command)) {
             return classOfT.cast(command);
         }
