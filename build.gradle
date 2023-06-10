@@ -4,7 +4,7 @@ plugins {
 }
 
 group 'io.nopecho'
-version '1.0'
+version '1.0.0'
 
 configure(subprojects) {
 
@@ -19,6 +19,7 @@ configure(subprojects) {
     }
 
     dependencies {
+        testImplementation 'org.assertj:assertj-core:3.24.2'
         testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
         testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
     }

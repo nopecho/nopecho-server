@@ -1,1 +1,16 @@
 rootProject.name = 'nopecho-server'
+
+include 'core'
+include 'core:abstraction'
+include 'core:utils'
+include 'core:domain'
+//domains
+include 'core:domain:user'
+
+include 'server'
+include 'server:boot'
+
+//modules
+include 'server:user'
+include 'server:user:adapter'
+include 'server:user:application'
