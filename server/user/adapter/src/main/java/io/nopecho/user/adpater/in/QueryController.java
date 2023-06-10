@@ -1,8 +1,8 @@
-package io.nopecho.user.domain.adpater.in;
+package io.nopecho.user.adpater.in;
 
 import io.nopecho.abstraction.query.QueryResult;
-import io.nopecho.user.domain.application.port.in.query.TestQuery;
-import io.nopecho.user.domain.application.port.in.query.UserQueryHandler;
+import io.nopecho.user.application.port.in.query.TestQuery;
+import io.nopecho.user.application.port.in.query.UserQueryHandler;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;

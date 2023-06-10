@@ -1,8 +1,8 @@
-package io.nopecho.user.domain.application.handlers.command;
+package io.nopecho.user.application.handlers.command;
 
 import io.nopecho.abstraction.command.Command;
 import io.nopecho.abstraction.command.CommandHandler;
-import io.nopecho.user.domain.application.port.in.command.TestCommand;
+import io.nopecho.user.application.port.in.command.TestCommand;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;

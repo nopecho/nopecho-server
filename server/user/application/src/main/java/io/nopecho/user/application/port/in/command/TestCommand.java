@@ -1,4 +1,4 @@
-package io.nopecho.user.domain.application.port.in.command;
+package io.nopecho.user.application.port.in.command;
 
 import io.nopecho.abstraction.command.Command;
 import lombok.Builder;

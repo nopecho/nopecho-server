@@ -1,4 +1,4 @@
-package io.nopecho.user.domain.application.port.in.query;
+package io.nopecho.user.application.port.in.query;
 
 import io.nopecho.abstraction.query.QueryResult;
 import io.nopecho.utils.Throws;
@@ -18,6 +18,6 @@ public class TestQueryResult implements QueryResult {
 
     @Override
     public void selfValidation() {
-        Throws.ifNullOrBlank(this.name, "name is can't be null or empty!");
+        Throws.ifNullOrBlank(this.name, "test query name is can be not null or empty!");
     }
 }

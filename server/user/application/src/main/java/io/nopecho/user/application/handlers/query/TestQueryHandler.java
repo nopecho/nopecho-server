@@ -1,10 +1,9 @@
-package io.nopecho.user.domain.application.handlers.query;
+package io.nopecho.user.application.handlers.query;
 
 import io.nopecho.abstraction.query.Query;
 import io.nopecho.abstraction.query.QueryHandler;
 import io.nopecho.abstraction.query.QueryResult;
-import io.nopecho.user.domain.application.port.in.query.TestQuery;
-import io.nopecho.user.domain.application.port.in.query.TestQueryResult;
+import io.nopecho.user.application.port.in.query.TestQuery;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -21,10 +20,8 @@ public class TestQueryHandler implements QueryHandler {
 
     @Override
     public QueryResult handle(Query query) {
-        TestQuery testQuery = convert(query, TestQuery.class);
+        TestQuery testQuery = tryCast(query, TestQuery.class);
 
-        return TestQueryResult.builder()
-                .name(testQuery.getName())
-                .build();
+        return UserResultConverter.convert(testQuery);
     }
 }

@@ -1,4 +1,4 @@
-package io.nopecho.user.domain.application.port.in.query;
+package io.nopecho.user.application.port.in.query;
 
 import io.nopecho.abstraction.query.Query;
 import io.nopecho.utils.Throws;

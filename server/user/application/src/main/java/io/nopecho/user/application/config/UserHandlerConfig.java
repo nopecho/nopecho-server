@@ -1,9 +1,9 @@
-package io.nopecho.user.domain.application.config;
+package io.nopecho.user.application.config;
 
-import io.nopecho.user.domain.application.handlers.command.TestCommandHandler;
-import io.nopecho.user.domain.application.handlers.query.TestQueryHandler;
-import io.nopecho.user.domain.application.port.in.command.UserCommandHandler;
-import io.nopecho.user.domain.application.port.in.query.UserQueryHandler;
+import io.nopecho.user.application.handlers.command.TestCommandHandler;
+import io.nopecho.user.application.handlers.query.TestQueryHandler;
+import io.nopecho.user.application.port.in.command.UserCommandHandler;
+import io.nopecho.user.application.port.in.query.UserQueryHandler;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
