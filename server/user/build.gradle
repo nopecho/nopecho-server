@@ -1,0 +1,7 @@
+dependencies {
+    implementation(project(':core:domain:user'))
+}
+
+bootJar {
+    enabled = false
+}
