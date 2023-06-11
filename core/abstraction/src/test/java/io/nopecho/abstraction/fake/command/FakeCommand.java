@@ -1,4 +1,4 @@
-package io.nopecho.abstraction.fake;
+package io.nopecho.abstraction.fake.command;
 
 import io.nopecho.abstraction.command.Command;
 
@@ -27,5 +27,10 @@ public class FakeCommand implements Command {
         if (!isValid) {
             throw new RuntimeException();
         }
+    }
+
+    @Override
+    public boolean isType(Class<? extends Command> clazz) {
+        return this.getClass().equals(clazz);
     }
 }

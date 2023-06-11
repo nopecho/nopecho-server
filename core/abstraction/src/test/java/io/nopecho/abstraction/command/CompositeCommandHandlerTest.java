@@ -1,6 +1,6 @@
 package io.nopecho.abstraction.command;
 
-import io.nopecho.abstraction.fake.*;
+import io.nopecho.abstraction.fake.command.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -22,7 +22,7 @@ class CompositeCommandHandlerTest {
         canNotHandler = new AlwaysCanNotHandler();
         fake2Handler = FakeCommandHandler.isSupport(new FakeCommand2());
 
-        sut = new CompositeCommandHandler(fakeHandler, canNotHandler, fake2Handler);
+        sut = new FakeCommandHandlers(fakeHandler, canNotHandler, fake2Handler);
     }
 
     @DisplayName("지원하는 command 를 찾아 handle 한다.")
@@ -43,5 +43,11 @@ class CompositeCommandHandlerTest {
 
         assertThatThrownBy(() -> sut.handle(command))
                 .isInstanceOf(RuntimeException.class);
+    }
+
+    static class FakeCommandHandlers extends CompositeCommandHandler {
+        public FakeCommandHandlers(CommandHandler... handlers) {
+            super(handlers);
+        }
     }
 }

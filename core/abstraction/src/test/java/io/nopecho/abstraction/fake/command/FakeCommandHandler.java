@@ -1,4 +1,4 @@
-package io.nopecho.abstraction.fake;
+package io.nopecho.abstraction.fake.command;
 
 import io.nopecho.abstraction.command.Command;
 import io.nopecho.abstraction.command.CommandHandler;
@@ -18,7 +18,7 @@ public class FakeCommandHandler implements CommandHandler {
 
     @Override
     public boolean canHandle(Command command) {
-        return command.getClass().equals(FakeCommand.class);
+        return command.isType(FakeCommand.class);
     }
 
     @Override

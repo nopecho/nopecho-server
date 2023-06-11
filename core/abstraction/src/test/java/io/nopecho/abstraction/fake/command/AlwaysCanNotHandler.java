@@ -1,4 +1,4 @@
-package io.nopecho.abstraction.fake;
+package io.nopecho.abstraction.fake.command;
 
 import io.nopecho.abstraction.command.Command;
 import io.nopecho.abstraction.command.CommandHandler;
