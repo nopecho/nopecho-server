@@ -4,11 +4,11 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-public class CompositeQueryHandler implements QueryHandler {
+public abstract class CompositeQueryHandler implements QueryHandler {
 
     private final List<QueryHandler> handlers;
 
-    public CompositeQueryHandler(QueryHandler... handlers) {
+    protected CompositeQueryHandler(QueryHandler... handlers) {
         this.handlers = Collections.unmodifiableList(Arrays.asList(handlers));
     }
 
@@ -39,7 +39,7 @@ public class CompositeQueryHandler implements QueryHandler {
                 .filter(h -> h.canHandle(Query))
                 .findFirst()
                 .orElseThrow(() -> new RuntimeException(
-                        String.format("can not support this Query: %s", getQueryName(Query)))
+                        String.format("not found supported handlers to Query: %s", getQueryName(Query)))
                 );
     }
 

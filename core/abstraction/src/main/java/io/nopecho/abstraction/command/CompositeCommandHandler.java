@@ -4,11 +4,11 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-public class CompositeCommandHandler implements CommandHandler {
+public abstract class CompositeCommandHandler implements CommandHandler {
 
     private final List<CommandHandler> handlers;
 
-    public CompositeCommandHandler(CommandHandler... handlers) {
+    protected CompositeCommandHandler(CommandHandler... handlers) {
         this.handlers = Collections.unmodifiableList(Arrays.asList(handlers));
     }
 
@@ -39,7 +39,7 @@ public class CompositeCommandHandler implements CommandHandler {
                 .filter(h -> h.canHandle(command))
                 .findFirst()
                 .orElseThrow(() -> new RuntimeException(
-                        String.format("can not support this command: %s", getCommandName(command)))
+                        String.format("not found supported handlers to command: %s", getCommandName(command)))
                 );
     }
 
