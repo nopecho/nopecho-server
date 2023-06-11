@@ -14,7 +14,7 @@ public class TestCommandHandler implements CommandHandler {
 
     @Override
     public boolean canHandle(Command command) {
-        return command.getClass().equals(TestCommand.class);
+        return command.isType(TestCommand.class);
     }
 
     @Override

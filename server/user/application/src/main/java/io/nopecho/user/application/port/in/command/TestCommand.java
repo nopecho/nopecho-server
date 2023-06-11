@@ -16,4 +16,9 @@ public class TestCommand implements Command {
     public void selfValidation() {
 
     }
+
+    @Override
+    public boolean isType(Class<? extends Command> clazz) {
+        return this.getClass().equals(clazz);
+    }
 }

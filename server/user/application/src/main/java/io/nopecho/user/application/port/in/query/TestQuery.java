@@ -20,4 +20,9 @@ public class TestQuery implements Query {
     public void selfValidation() {
         Throws.ifNullOrBlank(this.name, "name is can't be null or empty!");
     }
+
+    @Override
+    public boolean isType(Class<? extends Query> clazz) {
+        return this.getClass().equals(clazz);
+    }
 }
