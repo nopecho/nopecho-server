@@ -5,20 +5,20 @@ import java.util.*;
 
 public abstract class CompositeEventHandler implements DomainEventHandler {
 
-    private final Set<Class<? extends EventPayload>> supportedEventType = new HashSet<>();
+    private final Set<Class<? extends EventPayload>> supportedEventTypes = new HashSet<>();
     private final List<DomainEventHandler> handlers;
 
     protected CompositeEventHandler(DomainEventHandler... handler) {
         this.handlers = Collections.unmodifiableList(Arrays.asList(handler));
     }
 
-    public void subscribe(Class<? extends EventPayload> eventType) {
-        this.supportedEventType.add(eventType);
+    protected void subscribe(Class<? extends EventPayload> eventType) {
+        this.supportedEventTypes.add(eventType);
     }
 
     @Override
     public boolean canHandle(DomainEvent domainEvent) {
-        return this.supportedEventType.stream()
+        return this.supportedEventTypes.stream()
                 .anyMatch(domainEvent::isType);
     }
 

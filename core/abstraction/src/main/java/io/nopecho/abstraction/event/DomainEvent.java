@@ -68,6 +68,10 @@ public final class DomainEvent implements Event {
         return getEventPayload().isType(clazz);
     }
 
+    public boolean isType(String type) {
+        return this.type.equals(type);
+    }
+
     public String serialize() {
         return Serializer.serialize(this);
     }
