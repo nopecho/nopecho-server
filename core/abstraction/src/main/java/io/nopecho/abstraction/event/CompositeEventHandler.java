@@ -12,7 +12,7 @@ public abstract class CompositeEventHandler implements DomainEventHandler {
         this.handlers = Collections.unmodifiableList(Arrays.asList(handler));
     }
 
-    protected void subscribe(Class<? extends EventPayload> eventType) {
+    public void subscribe(Class<? extends EventPayload> eventType) {
         this.supportedEventTypes.add(eventType);
     }
 
@@ -33,7 +33,7 @@ public abstract class CompositeEventHandler implements DomainEventHandler {
             return;
         }
         throw new RuntimeException(
-                String.format("not found supported events from this handlers. handler: %s, event: %s", this.getClass().getTypeName(), getDomainEventName(event))
+                String.format("not found supported events from this handlers. handler: %s, event: %s", this.getClass().getTypeName(), getEventType(event))
         );
     }
 
@@ -43,7 +43,7 @@ public abstract class CompositeEventHandler implements DomainEventHandler {
             handler.handle(event);
         } catch (Exception e) {
             throw new RuntimeException(
-                    String.format("error from [%s]. message: %s", getDomainEventName(event), e.getMessage())
+                    String.format("error from [%s]. message: %s", getEventType(event), e.getMessage())
             );
         }
     }
@@ -53,11 +53,11 @@ public abstract class CompositeEventHandler implements DomainEventHandler {
                 .filter(h -> h.canHandle(event))
                 .findFirst()
                 .orElseThrow(() -> new RuntimeException(
-                        String.format("not found supported handlers to this DomainEvent: %s", getDomainEventName(event)))
+                        String.format("not found supported handlers to this EventType: %s", getEventType(event)))
                 );
     }
 
-    private String getDomainEventName(DomainEvent event) {
-        return event.getClass().getTypeName();
+    private String getEventType(DomainEvent event) {
+        return event.getType();
     }
 }

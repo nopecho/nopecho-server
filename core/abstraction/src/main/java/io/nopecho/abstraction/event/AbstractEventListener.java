@@ -4,7 +4,7 @@ public abstract class AbstractEventListener implements DomainEventListener {
 
     protected final CompositeEventHandler handler;
 
-    protected AbstractEventListener(CompositeEventHandler handler) {
+    public AbstractEventListener(CompositeEventHandler handler) {
         this.handler = handler;
     }
 

@@ -9,8 +9,8 @@ import java.time.LocalDateTime;
 public final class DomainEvent implements Event {
 
     private Long id;
-    private Object payload;
     private String type;
+    private Object payload;
     private LocalDateTime occurredAt;
 
     public DomainEvent() {
