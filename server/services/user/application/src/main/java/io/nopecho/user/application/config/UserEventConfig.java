@@ -1,8 +1,8 @@
 package io.nopecho.user.application.config;
 
 import io.nopecho.event.user.CreatedUserEvent;
-import io.nopecho.user.application.handlers.event.TestEventHandler;
-import io.nopecho.user.application.port.in.event.UserEventHandler;
+import io.nopecho.user.application.events.CreatedUserEventHandler;
+import io.nopecho.user.application.events.UserCompositeEventHandler;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -11,15 +11,15 @@ import org.springframework.context.annotation.Configuration;
 @RequiredArgsConstructor
 public class UserEventConfig {
 
-    private final TestEventHandler testEventHandler;
+    private final CreatedUserEventHandler createdUserEventHandler;
 
     @Bean
-    public UserEventHandler userEventHandler() {
-        UserEventHandler eventHandler = new UserEventHandler(
-                testEventHandler
+    public UserCompositeEventHandler userEventHandler() {
+        UserCompositeEventHandler compositeEventHandler = new UserCompositeEventHandler(
+                createdUserEventHandler
         );
-        eventHandler.subscribe(CreatedUserEvent.class);
+        compositeEventHandler.subscribe(CreatedUserEvent.class);
 
-        return eventHandler;
+        return compositeEventHandler;
     }
 }

@@ -1,4 +1,4 @@
-package io.nopecho.event.core;
+package io.nopecho.event;
 
 import io.nopecho.abstraction.event.DomainEvent;
 

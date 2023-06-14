@@ -1,17 +1,20 @@
-package io.nopecho.user.application.handlers.event;
+package io.nopecho.user.application.events;
 
 import io.nopecho.abstraction.event.DomainEvent;
 import io.nopecho.abstraction.event.DomainEventHandler;
 import io.nopecho.event.user.CreatedUserEvent;
+import io.nopecho.user.application.port.in.command.UserCommandHandler;
 import io.nopecho.utils.Serializer;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 @Slf4j
-@Service
+@Component
 @RequiredArgsConstructor
-public class TestEventHandler implements DomainEventHandler {
+public class CreatedUserEventHandler implements DomainEventHandler {
+
+    private final UserCommandHandler commandHandler;
 
     @Override
     public boolean canHandle(DomainEvent domainEvent) {
@@ -20,6 +23,6 @@ public class TestEventHandler implements DomainEventHandler {
 
     @Override
     public void handle(DomainEvent domainEvent) {
-        log.info("handled event! {}", Serializer.serialize(domainEvent));
+        log.info("handle created event: {}", Serializer.serialize(domainEvent));
     }
 }

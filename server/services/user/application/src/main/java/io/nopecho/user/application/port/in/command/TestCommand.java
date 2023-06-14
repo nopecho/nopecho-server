@@ -8,7 +8,10 @@ import lombok.Getter;
 @Builder
 public class TestCommand implements Command {
 
-    private TestCommand() {
+    private Long id;
+
+    private TestCommand(Long id) {
+        this.id = id;
         this.selfValidation();
     }
 
