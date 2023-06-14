@@ -30,6 +30,7 @@ public class TestCommandHandler implements CommandHandler {
             log.info("something logic command: {}", Serializer.serialize(testCommand));
             orchestrator.onSuccess(DomainEvent.of(TestEvent.of(testCommand.getId())));
         } catch (Exception e) {
+            log.error(e.getMessage());
             orchestrator.onFail(DomainEvent.of(TestEvent.of(testCommand.getId())));
         }
     }
