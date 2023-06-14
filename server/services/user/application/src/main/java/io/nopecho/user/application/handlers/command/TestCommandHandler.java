@@ -31,7 +31,6 @@ public class TestCommandHandler implements CommandHandler {
             orchestrator.onSuccess(DomainEvent.of(TestEvent.of(testCommand.getId())));
         } catch (Exception e) {
             orchestrator.onFail(DomainEvent.of(TestEvent.of(testCommand.getId())));
-            throw new RuntimeException(e.getMessage());
         }
     }
 }
