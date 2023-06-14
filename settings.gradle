@@ -12,9 +12,10 @@ include 'server:boot'
 include 'server:events-store'
 include 'server:events-store:adapter'
 include 'server:events-store:core'
+include 'server:services'
 
 //modules
-include 'server:user'
-include 'server:user:adapter'
-include 'server:user:application'
+include 'server:services:user'
+include 'server:services:user:adapter'
+include 'server:services:user:application'
 

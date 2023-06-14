@@ -1,6 +1,6 @@
 dependencies {
     implementation(project(':server:events-store:adapter'))
 
-    implementation(project(':server:user:adapter'))
-    // add modules..
+    // add service modules..
+    implementation(project(':server:services:user:adapter'))
 }
