@@ -1,6 +1,6 @@
 package io.nopecho.abstraction.event;
 
-public interface DomainEventPublisher {
+public interface EventPublisher {
 
     void publish(DomainEvent event);
 }

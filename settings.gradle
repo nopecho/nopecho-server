@@ -9,9 +9,9 @@ include 'core:domain:user'
 
 include 'server'
 include 'server:boot'
-include 'server:events-store'
-include 'server:events-store:adapter'
-include 'server:events-store:core'
+include 'server:events'
+include 'server:events:adapter'
+include 'server:events:orchestrator'
 include 'server:services'
 
 //modules

@@ -1,5 +1,5 @@
 dependencies {
-    implementation(project(':server:events-store:core'))
+    implementation(project(':server:events:orchestrator'))
 
     implementation 'org.springframework:spring-tx'
 }
