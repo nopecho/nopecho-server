@@ -9,13 +9,17 @@ include 'core:domain:user'
 
 include 'server'
 include 'server:boot'
-include 'server:events'
-include 'server:events:adapter'
-include 'server:events:orchestrator'
+include 'server:saga'
+include 'server:saga:adapter'
+include 'server:saga:orchestration'
 include 'server:services'
 
 //modules
 include 'server:services:user'
 include 'server:services:user:adapter'
 include 'server:services:user:application'
+include 'server:events:saga'
+findProject(':server:events:saga')?.name = 'saga'
+include 'server:saga:core'
+findProject(':server:saga:core')?.name = 'core'
 

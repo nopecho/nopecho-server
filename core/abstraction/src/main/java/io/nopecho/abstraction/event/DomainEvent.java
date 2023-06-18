@@ -4,6 +4,7 @@ import io.nopecho.utils.LongIdGenerator;
 import io.nopecho.utils.Serializer;
 import io.nopecho.utils.Throws;
 
+import java.lang.reflect.Type;
 import java.time.LocalDateTime;
 
 public final class DomainEvent implements Event {
@@ -66,6 +67,10 @@ public final class DomainEvent implements Event {
 
     public boolean isType(Class<? extends EventPayload> clazz) {
         return getEventPayload().isType(clazz);
+    }
+
+    public boolean isType(Type type) {
+        return this.type.equals(type.getTypeName());
     }
 
     public boolean isType(String type) {

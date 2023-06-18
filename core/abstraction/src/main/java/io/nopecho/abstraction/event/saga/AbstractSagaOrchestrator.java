@@ -1,13 +1,16 @@
 package io.nopecho.abstraction.event.saga;
 
-import io.nopecho.abstraction.event.EventPublisher;
+import io.nopecho.abstraction.event.EventPayload;
+
+import java.util.HashSet;
+import java.util.Set;
 
 public abstract class AbstractSagaOrchestrator implements SagaOrchestrator {
-    protected final EventTransactionManager transactionManager;
-    protected final EventPublisher eventPublisher;
+    protected final Set<Class<? extends EventPayload>> supportedEvents = new HashSet<>();
 
-    protected AbstractSagaOrchestrator(EventTransactionManager transactionManager, EventPublisher eventPublisher) {
-        this.transactionManager = transactionManager;
-        this.eventPublisher = eventPublisher;
+    public void subscription(Class<? extends EventPayload> event) {
+        this.supportedEvents.add(event);
     }
+
+    ;
 }

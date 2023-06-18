@@ -1,5 +1,5 @@
 dependencies {
-    implementation(project(':server:events:adapter'))
+    implementation(project(':server:saga:adapter'))
 
     // add service modules..
     implementation(project(':server:services:user:adapter'))
