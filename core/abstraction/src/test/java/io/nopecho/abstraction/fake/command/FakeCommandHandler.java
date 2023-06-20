@@ -2,6 +2,7 @@ package io.nopecho.abstraction.fake.command;
 
 import io.nopecho.abstraction.command.Command;
 import io.nopecho.abstraction.command.CommandHandler;
+import io.nopecho.abstraction.event.EventPayload;
 
 public class FakeCommandHandler implements CommandHandler {
 
@@ -22,9 +23,11 @@ public class FakeCommandHandler implements CommandHandler {
     }
 
     @Override
-    public void handle(Command command) {
+    public EventPayload handle(Command command) {
         if (canHandle(command)) {
             this.isHandle = true;
+            return null;
         }
+        return null;
     }
 }

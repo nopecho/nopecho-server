@@ -1,8 +1,8 @@
 package io.nopecho.user.application.config;
 
 import io.nopecho.user.application.handlers.command.TestCommandHandler;
+import io.nopecho.user.application.handlers.command.UserCompositeCommandHandler;
 import io.nopecho.user.application.handlers.query.TestQueryHandler;
-import io.nopecho.user.application.port.in.command.UserCommandHandler;
 import io.nopecho.user.application.port.in.query.UserQueryHandler;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -20,8 +20,8 @@ public class UserHandlerConfig {
 
 
     @Bean
-    public UserCommandHandler userCompositeCommandHandler() {
-        return new UserCommandHandler(
+    public UserCompositeCommandHandler userCompositeCommandHandler() {
+        return new UserCompositeCommandHandler(
                 testCommandHandler
         );
     }

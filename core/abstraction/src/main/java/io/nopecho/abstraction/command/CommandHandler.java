@@ -1,10 +1,12 @@
 package io.nopecho.abstraction.command;
 
+import io.nopecho.abstraction.event.EventPayload;
+
 public interface CommandHandler {
 
     boolean canHandle(Command command);
 
-    void handle(Command command);
+    EventPayload handle(Command command);
 
     default <T extends Command> T tryCast(Command command, Class<T> classOfT) {
         if (canHandle(command)) {

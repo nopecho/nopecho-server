@@ -1,5 +1,7 @@
 package io.nopecho.abstraction.command;
 
+import io.nopecho.abstraction.event.EventPayload;
+
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -19,14 +21,14 @@ public abstract class CompositeCommandHandler implements CommandHandler {
     }
 
     @Override
-    public void handle(Command command) {
-        handleOrThrow(command);
+    public EventPayload handle(Command command) {
+        return handleOrThrow(command);
     }
 
-    private void handleOrThrow(Command command) {
+    private EventPayload handleOrThrow(Command command) {
         CommandHandler handler = findHandlerOrThrow(command);
         try {
-            handler.handle(command);
+            return handler.handle(command);
         } catch (Exception e) {
             throw new RuntimeException(
                     String.format("error from [%s]. message: %s", getCommandName(command), e.getMessage())
