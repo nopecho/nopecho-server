@@ -1,7 +1,7 @@
 package io.nopecho.saga.orchestration.user;
 
 import io.nopecho.abstraction.event.VoidEvent;
-import io.nopecho.abstraction.event.saga.TransitionManager;
+import io.nopecho.abstraction.event.saga.TransitionHandler;
 import io.nopecho.abstraction.event.saga.VoidTransition;
 import io.nopecho.saga.orchestration.CommandGateway;
 import lombok.RequiredArgsConstructor;
@@ -18,7 +18,7 @@ public class UserOrchestratorConfig {
 
     @Bean
     public UserEventHandler userEventHandler() {
-        return (UserEventHandler) TransitionManager.builder()
+        return (UserEventHandler) TransitionHandler.builder()
                 .register(VoidTransition::new)
                 .build();
     }

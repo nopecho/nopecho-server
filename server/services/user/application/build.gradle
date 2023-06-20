@@ -1,6 +1,5 @@
 dependencies {
     implementation(project(':server:saga:core'))
-    implementation(project(':server:saga:orchestration'))
 
     implementation 'org.springframework:spring-tx'
 }

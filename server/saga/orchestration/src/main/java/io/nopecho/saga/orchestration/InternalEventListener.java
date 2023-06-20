@@ -15,7 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Slf4j
 @Component
 @RequiredArgsConstructor
-public class SagaEventListener implements DomainEventListener {
+public class InternalEventListener implements DomainEventListener {
 
     private final EventStore eventStore;
     private final OrchestrationContainer container;

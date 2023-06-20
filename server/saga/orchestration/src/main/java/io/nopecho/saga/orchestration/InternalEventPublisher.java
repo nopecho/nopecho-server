@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 @Slf4j
 @Component
 @RequiredArgsConstructor
-public class SagaEventPublisher implements EventPublisher {
+public class InternalEventPublisher implements EventPublisher {
 
     private final ApplicationEventPublisher publisher;
 

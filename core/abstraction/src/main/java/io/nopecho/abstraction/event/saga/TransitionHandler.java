@@ -7,11 +7,11 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.function.Supplier;
 
-public class TransitionManager implements EventTransitionManager {
+public class TransitionHandler implements EventTransitionHandler {
 
     private final Set<EventTransition<?, ?>> transitions;
 
-    protected TransitionManager(Set<EventTransition<?, ?>> transitions) {
+    protected TransitionHandler(Set<EventTransition<?, ?>> transitions) {
         this.transitions = transitions;
     }
 
@@ -46,8 +46,8 @@ public class TransitionManager implements EventTransitionManager {
             return this;
         }
 
-        public TransitionManager build() {
-            return new TransitionManager(this.transactions);
+        public TransitionHandler build() {
+            return new TransitionHandler(this.transactions);
         }
     }
 }

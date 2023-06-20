@@ -6,11 +6,11 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-public abstract class CompositeCommandHandler implements CommandHandler {
+public abstract class CompositeCommandHandler implements CommandHandler<Command, EventPayload> {
 
-    private final List<CommandHandler> handlers;
+    private final List<CommandHandler<?, ?>> handlers;
 
-    protected CompositeCommandHandler(CommandHandler... handlers) {
+    protected CompositeCommandHandler(CommandHandler<?, ?>... handlers) {
         this.handlers = Collections.unmodifiableList(Arrays.asList(handlers));
     }
 
@@ -41,8 +41,7 @@ public abstract class CompositeCommandHandler implements CommandHandler {
                 .filter(h -> h.canHandle(command))
                 .findFirst()
                 .orElseThrow(() -> new RuntimeException(
-                        String.format("not found supported handlers to command: %s", getCommandName(command)))
-                );
+                        String.format("not found supported handlers to command: %s", getCommandName(command))));
     }
 
     private String getCommandName(Command command) {
