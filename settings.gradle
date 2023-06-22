@@ -1,25 +1,49 @@
 rootProject.name = 'nopecho-server'
 
+/**
+ * supports
+ * - 시스템 내부에서 공통으로 사용되는 모듈
+ */
+include 'supports'
+include 'supports:abstraction'
+include 'supports:utils'
+include 'supports:clients'
+
+/**
+ * core
+ * |_xxx
+ *   |_adapter
+ *   |_application
+ *   |_domain
+ * ...
+ * - 시스템의 핵심 도메인이 존재하는 모듈 계층
+ *  - adapter: 도메인의 인프라스트럭처에 대한 책임
+ *  - application: 내부 도메인 규칙을 적용하고 트랜잭션에 대한 책임
+ *  - domain: POJO 형식의 순수 자바 코드로 도메인 규칙을 정의하는 책임
+ */
 include 'core'
-include 'core:abstraction'
-include 'core:utils'
-include 'core:domain'
-//domains
-include 'core:domain:user'
 
-include 'server'
-include 'server:boot'
-include 'server:saga'
-include 'server:saga:adapter'
-include 'server:saga:orchestration'
-include 'server:services'
+include 'core:saga'
+include 'core:saga:adapter'
+include 'core:saga:orchestration'
+include 'core:saga:domain'
 
-//modules
-include 'server:services:user'
-include 'server:services:user:adapter'
-include 'server:services:user:application'
-include 'server:events:saga'
-findProject(':server:events:saga')?.name = 'saga'
-include 'server:saga:core'
-findProject(':server:saga:core')?.name = 'core'
+include 'core:members'
+include 'core:members:adapter'
+include 'core:members:application'
+include 'core:members:domain'
+
+/**
+ * app
+ * |_app-worker
+ * |_app-api
+ * |_app-batch
+ * ...
+ * - 독립적으로 실행 가능한 애플리케이션 모듈 계층
+ * - core 계층의 adapter 모듈을 조합해서 실행 가능한 애플리케이션을 제공하는 책임
+ */
+include 'app'
+include 'app:app-api'
+
+
 

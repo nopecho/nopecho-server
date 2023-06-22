@@ -1,6 +1,0 @@
-dependencies {
-    implementation(project(':server:saga:adapter'))
-
-    // add service modules..
-    implementation(project(':server:services:user:adapter'))
-}

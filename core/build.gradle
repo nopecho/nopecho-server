@@ -1,0 +1,6 @@
+configure(subprojects) {
+    dependencies {
+        api(project(':supports:utils'))
+        api(project(':supports:abstraction'))
+    }
+}

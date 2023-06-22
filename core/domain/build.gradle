@@ -1,5 +1,0 @@
-configure(subprojects) {
-    dependencies {
-        implementation(project(':core:utils'))
-    }
-}
