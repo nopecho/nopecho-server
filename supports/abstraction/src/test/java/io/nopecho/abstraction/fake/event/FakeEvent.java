@@ -1,6 +1,6 @@
 package io.nopecho.abstraction.fake.event;
 
-import io.nopecho.abstraction.event.EventPayload;
+import io.nopecho.event.EventPayload;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

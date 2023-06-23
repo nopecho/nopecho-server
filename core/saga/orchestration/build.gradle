@@ -1,4 +1,0 @@
-dependencies {
-    implementation(project(':core:saga:domain'))
-    implementation 'org.springframework:spring-tx'
-}

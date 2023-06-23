@@ -1,8 +1,8 @@
 package io.nopecho.abstraction.fake.command;
 
-import io.nopecho.abstraction.command.Command;
-import io.nopecho.abstraction.command.CommandHandler;
-import io.nopecho.abstraction.event.EventPayload;
+import io.nopecho.command.Command;
+import io.nopecho.command.CommandHandler;
+import io.nopecho.event.EventPayload;
 
 public class FakeCommandHandler implements CommandHandler {
 

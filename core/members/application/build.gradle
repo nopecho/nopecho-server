@@ -1,4 +1,7 @@
 dependencies {
-    implementation(project(':core:saga:domain'))
+    implementation(project(':core:members:domain'))
+    implementation(project(':core:members:domain:events'))
+    implementation(project(':supports:aop'))
+
     implementation 'org.springframework:spring-tx'
 }

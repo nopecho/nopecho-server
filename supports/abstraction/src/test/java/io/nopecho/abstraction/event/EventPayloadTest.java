@@ -1,5 +1,6 @@
 package io.nopecho.abstraction.event;
 
+import io.nopecho.event.EventPayload;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

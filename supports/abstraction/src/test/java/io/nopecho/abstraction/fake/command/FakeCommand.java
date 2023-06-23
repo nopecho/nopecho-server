@@ -1,6 +1,6 @@
 package io.nopecho.abstraction.fake.command;
 
-import io.nopecho.abstraction.command.Command;
+import io.nopecho.command.Command;
 
 public class FakeCommand implements Command {
 

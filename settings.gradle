@@ -7,7 +7,7 @@ rootProject.name = 'nopecho-server'
 include 'supports'
 include 'supports:abstraction'
 include 'supports:utils'
-include 'supports:clients'
+include 'supports:aop'
 
 /**
  * core
@@ -23,15 +23,15 @@ include 'supports:clients'
  */
 include 'core'
 
-include 'core:saga'
-include 'core:saga:adapter'
-include 'core:saga:orchestration'
-include 'core:saga:domain'
+include 'core:events-store'
+include 'core:events-store:adapter'
+include 'core:events-store:application'
 
 include 'core:members'
 include 'core:members:adapter'
 include 'core:members:application'
 include 'core:members:domain'
+include 'core:members:domain:events'
 
 /**
  * app
@@ -44,6 +44,3 @@ include 'core:members:domain'
  */
 include 'app'
 include 'app:app-api'
-
-
-

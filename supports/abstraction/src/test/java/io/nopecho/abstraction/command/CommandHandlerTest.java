@@ -3,6 +3,8 @@ package io.nopecho.abstraction.command;
 import io.nopecho.abstraction.fake.command.FakeCommand;
 import io.nopecho.abstraction.fake.command.FakeCommandHandler;
 import io.nopecho.abstraction.fake.command.NotSupportCommand;
+import io.nopecho.command.Command;
+import io.nopecho.command.CommandHandler;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

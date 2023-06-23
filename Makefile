@@ -1,5 +1,5 @@
 ## http://korea.gnu.org/manual/release/make/make-sjp/make-ko_toc.html
-.PHONY : help clean test build run pull push stop-db start-db show-aws start-aws stop-aws start-es stop-es
+.PHONY : help clean test build run pull push stop-db start-db start-aws stop-aws stop-es
 .DEFAULT : xxx
 
 PROFILE ?= local

@@ -1,6 +1,9 @@
 package io.nopecho.abstraction.command;
 
 import io.nopecho.abstraction.fake.command.*;
+import io.nopecho.command.Command;
+import io.nopecho.command.CommandHandler;
+import io.nopecho.command.CompositeCommandHandler;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

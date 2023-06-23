@@ -1,6 +1,5 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/members
+    url: jdbc:postgresql://localhost:5433/nopecho
     username: nopecho
     password: nopecho
----

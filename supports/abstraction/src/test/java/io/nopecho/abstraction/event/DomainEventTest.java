@@ -1,6 +1,8 @@
 package io.nopecho.abstraction.event;
 
 import io.nopecho.abstraction.fake.event.FakeEvent;
+import io.nopecho.event.DomainEvent;
+import io.nopecho.event.EventPayload;
 import io.nopecho.utils.Serializer;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -44,7 +46,7 @@ class DomainEventTest {
     void getPayload() {
         sut = DomainEvent.of(payload);
 
-        Object actual = sut.getPayload();
+        Object actual = sut.getPayloadObject();
 
         assertThat(actual).isInstanceOf(FakeEvent.class);
     }
