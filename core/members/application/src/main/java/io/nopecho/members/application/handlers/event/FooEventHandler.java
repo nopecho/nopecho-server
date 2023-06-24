@@ -2,7 +2,7 @@ package io.nopecho.members.application.handlers.event;
 
 import io.nopecho.event.DomainEventHandler;
 import io.nopecho.event.EventPayload;
-import io.nopecho.members.application.handlers.command.MemberCommandHandler;
+import io.nopecho.members.application.handlers.command.MemberCommandHandlers;
 import io.nopecho.members.events.MemberSignupEvent;
 import io.nopecho.utils.Serializer;
 import lombok.RequiredArgsConstructor;
@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class FooEventHandler implements DomainEventHandler<MemberSignupEvent> {
 
-    private final MemberCommandHandler commandHandler;
+    private final MemberCommandHandlers commandHandler;
 
     @Override
     public boolean canHandle(EventPayload event) {

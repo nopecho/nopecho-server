@@ -5,9 +5,9 @@ import io.nopecho.event.DomainEvent;
 import io.nopecho.event.DomainEventHandler;
 import io.nopecho.members.application.port.in.event.EventHandleUseCase;
 
-public class MemberEventHandler extends CompositeEventHandler implements EventHandleUseCase {
+public class MemberEventHandlers extends CompositeEventHandler implements EventHandleUseCase {
 
-    public MemberEventHandler(DomainEventHandler<?>... handlers) {
+    public MemberEventHandlers(DomainEventHandler<?>... handlers) {
         super(handlers);
     }
 

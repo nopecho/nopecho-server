@@ -18,18 +18,14 @@ public abstract class CompositeEventHandler implements DomainEventHandler<EventP
 
     @Override
     public void handle(EventPayload event) {
-        handleOrThrow(event);
+        if (canHandle(event)) {
+            findAndHandle(event);
+        }
     }
 
-    private void handleOrThrow(EventPayload event) {
+    private void findAndHandle(EventPayload event) {
         DomainEventHandler handler = findHandler(event);
-        try {
-            handler.handle(event);
-        } catch (Exception e) {
-            throw new RuntimeException(
-                    String.format("error from [%s]. message: %s", event.getClass().getTypeName(), e.getMessage())
-            );
-        }
+        handler.handle(event);
     }
 
     private DomainEventHandler findHandler(EventPayload event) {

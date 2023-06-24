@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
-public class InternalEventListener implements DomainEventListener {
+public class InternalEventConsumer implements DomainEventListener {
 
     private final StoreDomainEventUseCase useCase;
 

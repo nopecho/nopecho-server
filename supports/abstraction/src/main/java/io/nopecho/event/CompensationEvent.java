@@ -9,8 +9,8 @@ public final class CompensationEvent implements EventPayload {
         this.fromCommand = command;
     }
 
-    public static CompensationEvent of(String type, Object from) {
-        return new CompensationEvent(type, from);
+    public static CompensationEvent of(String type, Object command) {
+        return new CompensationEvent(type, command);
     }
 
     public String getType() {
