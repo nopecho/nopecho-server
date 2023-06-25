@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 @Slf4j
 @Component
 @RequiredArgsConstructor
-public class InternalEventConsumer implements DomainEventListener {
+public class InternalMemberEventConsumer implements DomainEventListener {
 
     private final EventHandleUseCase useCase;
 

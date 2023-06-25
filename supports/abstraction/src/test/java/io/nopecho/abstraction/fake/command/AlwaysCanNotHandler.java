@@ -15,4 +15,9 @@ public class AlwaysCanNotHandler implements CommandHandler {
     public EventPayload handle(Command command) {
         return null;
     }
+
+    @Override
+    public void validation(Command command) {
+
+    }
 }

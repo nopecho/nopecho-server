@@ -1,9 +1,23 @@
 package io.nopecho.members.events;
 
 import io.nopecho.event.EventPayload;
-import lombok.Value;
+import io.nopecho.members.domain.Member;
+import lombok.Getter;
 
-@Value(staticConstructor = "of")
+@Getter
 public class MemberSignupEvent implements EventPayload {
-    String id;
+
+    private final String id;
+    private final String name;
+    private final String email;
+
+    private MemberSignupEvent(Member member) {
+        this.id = member.getId().get().toString();
+        this.name = member.getName().get();
+        this.email = member.getEmail().get();
+    }
+
+    public static MemberSignupEvent of(Member member) {
+        return new MemberSignupEvent(member);
+    }
 }

@@ -13,6 +13,10 @@ public final class CompensationEvent implements EventPayload {
         return new CompensationEvent(type, command);
     }
 
+    public static CompensationEvent of(Class<? extends EventPayload> type, Object command) {
+        return new CompensationEvent(type.getTypeName(), command);
+    }
+
     public String getType() {
         return this.type;
     }

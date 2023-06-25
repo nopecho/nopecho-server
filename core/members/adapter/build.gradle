@@ -1,4 +1,5 @@
 dependencies {
+    implementation(project(':core:members:domain'))
     implementation(project(':core:members:application'))
 
     // web

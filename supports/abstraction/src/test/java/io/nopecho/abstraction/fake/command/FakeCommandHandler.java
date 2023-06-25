@@ -30,4 +30,9 @@ public class FakeCommandHandler implements CommandHandler {
         }
         return null;
     }
+
+    @Override
+    public void validation(Command command) {
+
+    }
 }

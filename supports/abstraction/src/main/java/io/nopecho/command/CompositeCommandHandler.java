@@ -22,18 +22,15 @@ public abstract class CompositeCommandHandler implements CommandHandler<Command,
 
     @Override
     public EventPayload handle(Command command) {
-        return handleOrThrow(command);
+        if (canHandle(command)) {
+            return handleOrThrow(command);
+        }
+        throw new RuntimeException(String.format("not found command handler to command: %s", getCommandName(command)));
     }
 
     private EventPayload handleOrThrow(Command command) {
         CommandHandler handler = findHandlerOrThrow(command);
-        try {
-            return handler.handle(command);
-        } catch (Exception e) {
-            throw new RuntimeException(
-                    String.format("error from [%s]. message: %s", getCommandName(command), e.getMessage())
-            );
-        }
+        return handler.handle(command);
     }
 
     private CommandHandler findHandlerOrThrow(Command command) {

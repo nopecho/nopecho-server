@@ -27,17 +27,21 @@ public class EventPublishAop {
         Object eventPayload = null;
         try {
             eventPayload = joinPoint.proceed();
+
+            eventPublisher.publish(DomainEvent.of(eventPayload));
             return eventPayload;
         } catch (Exception e) {
             MethodSignature signature = (MethodSignature) joinPoint.getSignature();
             Method method = signature.getMethod();
             EventPublish annotation = method.getAnnotation(EventPublish.class);
-            Object command = joinPoint.getArgs()[0];
+            if (!annotation.compensation()) {
+                throw e;
+            }
 
+            Object command = joinPoint.getArgs()[0];
             eventPayload = getCompensationEvent(annotation, command);
-            throw e;
-        } finally {
             eventPublisher.publish(DomainEvent.of(eventPayload));
+            throw e;
         }
     }
 
