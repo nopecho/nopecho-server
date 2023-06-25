@@ -1,0 +1,4 @@
+security:
+  ignore-paths:
+    - "/api/v1/login"
+    - "/api/v1/signup"

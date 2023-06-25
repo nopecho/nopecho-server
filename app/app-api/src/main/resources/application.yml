@@ -6,3 +6,8 @@ spring:
     url: jdbc:postgresql://localhost:5433/nopecho
     username: nopecho
     password: nopecho
+
+security:
+  ignore-paths:
+    - "/api/v1/login"
+    - "/api/v1/signup"

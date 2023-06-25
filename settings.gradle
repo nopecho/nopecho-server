@@ -44,3 +44,12 @@ include 'core:members:domain:events'
  */
 include 'app'
 include 'app:app-api'
+include 'core:auth'
+findProject(':core:auth')?.name = 'auth'
+include 'core:auth:adapter'
+findProject(':core:auth:adapter')?.name = 'adapter'
+include 'core:auth:application'
+findProject(':core:auth:application')?.name = 'application'
+include 'core:auth:domain'
+findProject(':core:auth:domain')?.name = 'domain'
+

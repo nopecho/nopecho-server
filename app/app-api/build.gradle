@@ -1,4 +1,6 @@
 dependencies {
+    implementation(project(':core:auth:adapter'))
+
     implementation(project(':core:events-store:adapter'))
 
     implementation(project(':core:members:adapter'))
