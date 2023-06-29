@@ -1,9 +1,6 @@
 package io.nopecho.aop;
 
-import io.nopecho.event.CompensationEvent;
-import io.nopecho.event.DomainEvent;
-import io.nopecho.event.DomainEventPublisher;
-import io.nopecho.event.EventPayload;
+import io.nopecho.event.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -24,22 +21,21 @@ public class EventPublishAop {
 
     @Around("@annotation(io.nopecho.aop.EventPublish)")
     public Object eventPublish(final ProceedingJoinPoint joinPoint) throws Throwable {
-        Object eventPayload = null;
         try {
-            eventPayload = joinPoint.proceed();
-
+            Object eventPayload = joinPoint.proceed();
             eventPublisher.publish(DomainEvent.of(eventPayload));
+
             return eventPayload;
         } catch (Exception e) {
             MethodSignature signature = (MethodSignature) joinPoint.getSignature();
             Method method = signature.getMethod();
             EventPublish annotation = method.getAnnotation(EventPublish.class);
-            if (!annotation.compensation()) {
+            if (isPass(annotation)) {
                 throw e;
             }
 
             Object command = joinPoint.getArgs()[0];
-            eventPayload = getCompensationEvent(annotation, command);
+            Object eventPayload = getCompensationEvent(annotation, command);
             eventPublisher.publish(DomainEvent.of(eventPayload));
             throw e;
         }
@@ -48,5 +44,18 @@ public class EventPublishAop {
     Object getCompensationEvent(EventPublish annotation, Object command) {
         Class<? extends EventPayload> type = annotation.compensationType();
         return CompensationEvent.of(type.getTypeName(), command);
+    }
+
+    private boolean isPass(EventPublish annotation) {
+        return isEnableCompensation(annotation)
+                && isVoidCompensation(annotation);
+    }
+
+    private boolean isEnableCompensation(EventPublish annotation) {
+        return !annotation.compensation();
+    }
+
+    private boolean isVoidCompensation(EventPublish annotation) {
+        return annotation.compensationType().isInstance(VoidEvent.class);
     }
 }

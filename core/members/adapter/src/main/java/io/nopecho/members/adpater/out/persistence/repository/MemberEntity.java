@@ -1,6 +1,9 @@
 package io.nopecho.members.adpater.out.persistence.repository;
 
-import io.nopecho.members.domain.*;
+import io.nopecho.members.domain.Email;
+import io.nopecho.members.domain.Member;
+import io.nopecho.members.domain.MemberId;
+import io.nopecho.members.domain.Name;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -25,7 +28,6 @@ public class MemberEntity {
     @With
     private final String email;
 
-    private final Role role;
     @CreatedDate
     private final LocalDateTime createdAt;
     @LastModifiedDate
@@ -38,7 +40,6 @@ public class MemberEntity {
                 member.getId().get(),
                 member.getName().get(),
                 member.getEmail().get(),
-                member.getRole(),
                 null,
                 null,
                 null
@@ -49,9 +50,6 @@ public class MemberEntity {
         return Member.from(
                 MemberId.of(this.id),
                 Name.of(this.name),
-                Email.of(this.email),
-                LoginMethods.from(LoginMethod.from(OauthMethod.NONE, LoginToken.of("test"))),
-                this.role
-        );
+                Email.of(this.email));
     }
 }

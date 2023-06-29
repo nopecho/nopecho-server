@@ -1,3 +1,5 @@
 dependencies {
+    implementation(project(':core:auth:domain'))
+
     implementation 'io.jsonwebtoken:jjwt:0.9.1'
 }

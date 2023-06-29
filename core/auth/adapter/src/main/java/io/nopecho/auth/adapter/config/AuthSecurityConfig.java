@@ -1,4 +1,4 @@
-package io.nopecho.auth.config;
+package io.nopecho.auth.adapter.config;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
+import org.springframework.security.config.core.GrantedAuthorityDefaults;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Slf4j
@@ -23,6 +24,7 @@ public class AuthSecurityConfig {
                 .authorizeHttpRequests(ignore -> ignore
                         .requestMatchers(securityProperty.getIgnorePathArray())
                         .permitAll())
+
                 .authorizeHttpRequests(authorize -> authorize
                         .anyRequest()
                         .authenticated())
@@ -31,5 +33,11 @@ public class AuthSecurityConfig {
                 .formLogin(AbstractHttpConfigurer::disable);
 
         return http.build();
+    }
+
+    @Bean
+    public GrantedAuthorityDefaults grantedAuthorityDefaults() {
+        // disable authority prefix
+        return new GrantedAuthorityDefaults("");
     }
 }

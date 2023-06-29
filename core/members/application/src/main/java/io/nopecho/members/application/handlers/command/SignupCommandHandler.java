@@ -6,7 +6,9 @@ import io.nopecho.command.CommandHandler;
 import io.nopecho.members.application.port.in.command.SignupCommand;
 import io.nopecho.members.application.port.out.QueryMemberPort;
 import io.nopecho.members.application.port.out.SaveMemberPort;
-import io.nopecho.members.domain.*;
+import io.nopecho.members.domain.Email;
+import io.nopecho.members.domain.Member;
+import io.nopecho.members.domain.Name;
 import io.nopecho.members.events.MemberSignupEvent;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -34,8 +36,8 @@ public class SignupCommandHandler implements CommandHandler<SignupCommand, Membe
 
         Member member = Member.createFrom(
                 Name.of(command.getName()),
-                Email.of(command.getEmail()),
-                LoginMethod.from(command.getLoginMethod(), LoginToken.of(command.getLoginToken())));
+                Email.of(command.getEmail())
+        );
 
         Member saved = savePort.save(member);
 

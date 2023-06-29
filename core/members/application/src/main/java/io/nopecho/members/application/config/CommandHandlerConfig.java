@@ -1,6 +1,6 @@
 package io.nopecho.members.application.config;
 
-import io.nopecho.members.application.handlers.command.MemberCommandHandlers;
+import io.nopecho.members.application.handlers.command.MemberMemberCommandHandlers;
 import io.nopecho.members.application.handlers.command.SignupCommandHandler;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -12,8 +12,8 @@ public class CommandHandlerConfig {
     private final SignupCommandHandler signupCommandHandler;
 
     @Bean
-    public MemberCommandHandlers memberCommandHandler() {
-        return new MemberCommandHandlers(
+    public MemberMemberCommandHandlers memberCommandHandler() {
+        return new MemberMemberCommandHandlers(
                 signupCommandHandler
         );
     }

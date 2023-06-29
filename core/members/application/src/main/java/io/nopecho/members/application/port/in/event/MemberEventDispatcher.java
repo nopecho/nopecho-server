@@ -2,7 +2,7 @@ package io.nopecho.members.application.port.in.event;
 
 import io.nopecho.event.DomainEvent;
 
-public interface EventHandleUseCase {
+public interface MemberEventDispatcher {
 
-    void handle(DomainEvent event);
+    void dispatch(DomainEvent event);
 }

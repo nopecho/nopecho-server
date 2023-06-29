@@ -18,7 +18,7 @@ public class MemberCommandPersistAdapter implements SaveMemberPort {
     @Override
     public Member save(Member member) {
         MemberEntity entity = MemberEntity.from(member);
-        MemberEntity saved = repository.save(entity);
-        return saved.toDomain();
+        return repository.save(entity)
+                .toDomain();
     }
 }

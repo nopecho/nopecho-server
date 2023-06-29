@@ -1,10 +1,13 @@
-package io.nopecho.auth.in;
+package io.nopecho.auth.adapter.in;
 
+import io.nopecho.auth.application.port.in.LoginUseCase;
+import io.nopecho.auth.domain.SignMethod;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @Slf4j
@@ -13,13 +16,14 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class AuthController {
 
-    @PostMapping("/login")
-    public ResponseEntity<?> login() {
-        return ResponseEntity.ok("login");
-    }
+    private final LoginUseCase useCase;
 
-    @PostMapping("/signup")
-    public ResponseEntity<?> signup() {
-        return ResponseEntity.ok("signup");
+    @PostMapping("/login")
+    public ResponseEntity<?> login(@RequestParam String method) {
+        SignMethod signMethod = SignMethod.valueOf(method);
+
+        useCase.login(signMethod);
+
+        return ResponseEntity.ok("login");
     }
 }

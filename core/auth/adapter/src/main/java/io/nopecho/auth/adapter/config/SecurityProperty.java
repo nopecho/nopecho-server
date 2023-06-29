@@ -1,4 +1,4 @@
-package io.nopecho.auth.config;
+package io.nopecho.auth.adapter.config;
 
 import lombok.Getter;
 import lombok.Setter;

@@ -1,9 +1,8 @@
 package io.nopecho.members.adpater.in;
 
 import io.nopecho.event.EventPayload;
-import io.nopecho.members.application.port.in.command.CommandHandleUseCase;
+import io.nopecho.members.application.port.in.command.MemberCommandUseCase;
 import io.nopecho.members.application.port.in.command.SignupCommand;
-import io.nopecho.members.domain.OauthMethod;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -18,14 +17,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class CommandController {
 
-    private final CommandHandleUseCase commandUseCase;
+    private final MemberCommandUseCase commandUseCase;
 
     @GetMapping("/v1/event")
     public ResponseEntity<?> get(@RequestParam Long id) {
         SignupCommand command = SignupCommand.builder()
                 .name("nopecho")
                 .email("ch.jooon@gmail.com")
-                .loginMethod(OauthMethod.GOOGLE)
                 .loginToken("token")
                 .build();
 
