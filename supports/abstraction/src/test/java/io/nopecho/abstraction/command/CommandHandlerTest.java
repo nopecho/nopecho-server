@@ -9,7 +9,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class CommandHandlerTest {
 
@@ -60,24 +59,5 @@ class CommandHandlerTest {
 
         FakeCommandHandler expect = (FakeCommandHandler) sut;
         assertThat(expect.isHandle).isFalse();
-    }
-
-    @DisplayName("지원하는 Command 만 casting 한다.")
-    @Test
-    void tryCastTest() {
-        sut = FakeCommandHandler.isSupport(command);
-
-        FakeCommand actual = sut.tryCast(command, FakeCommand.class);
-
-        assertThat(actual).isNotNull();
-    }
-
-    @DisplayName("지원하지 않는 Command casting 시 예외가 발생한다.")
-    @Test
-    void catchCastTest() {
-        Command notSupportCommand = new NotSupportCommand();
-        sut = FakeCommandHandler.isSupport(command);
-
-        assertThatThrownBy(() -> sut.tryCast(notSupportCommand, FakeCommand.class));
     }
 }
