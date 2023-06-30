@@ -11,45 +11,43 @@ include 'supports:aop'
 
 /**
  * core
- * |_xxx
- *   |_adapter
- *   |_application
- *   |_domain
+ * |-{domain}
+ *   |-adapter
+ *   |-models
+ *   |-service-port
  * ...
- * - 시스템의 핵심 도메인이 존재하는 모듈 계층
- *  - adapter: 도메인의 인프라스트럭처에 대한 책임
- *  - application: 내부 도메인 규칙을 적용하고 트랜잭션에 대한 책임
- *  - domain: POJO 형식의 순수 자바 코드로 도메인 규칙을 정의하는 책임
+ * - core: 시스템의 핵심 도메인이 존재하는 모듈 계층
+ *  - adapter: 도메인의 외부 의존 해결에 대한 책임
+ *  - models: POJO 형식의 순수 자바 코드로 핵심 도메인 모델을 정의하는 책임
+ *  - service-port: 도메인 내부 서비스 핸들링, 트랜잭션 관리에 대한 책임
  */
 include 'core'
 
-include 'core:events-store'
-include 'core:events-store:adapter'
-include 'core:events-store:application'
+include 'core:spring-events'
+include 'core:spring-events:adapter'
+include 'core:spring-events:service-port'
 
 include 'core:members'
 include 'core:members:adapter'
-include 'core:members:application'
-include 'core:members:domain'
-include 'core:members:domain:events'
+include 'core:members:service-port'
+include 'core:members:models'
+include 'core:members:models:events'
+
+include 'core:auth'
+include 'core:auth:adapter'
+include 'core:auth:service-port'
+include 'core:auth:models'
 
 /**
  * app
  * |_app-worker
  * |_app-api
  * |_app-batch
- * ...
+ * .
+ * .
  * - 독립적으로 실행 가능한 애플리케이션 모듈 계층
  * - core 계층의 adapter 모듈을 조합해서 실행 가능한 애플리케이션을 제공하는 책임
  */
 include 'app'
 include 'app:app-api'
-include 'core:auth'
-findProject(':core:auth')?.name = 'auth'
-include 'core:auth:adapter'
-findProject(':core:auth:adapter')?.name = 'adapter'
-include 'core:auth:application'
-findProject(':core:auth:application')?.name = 'application'
-include 'core:auth:domain'
-findProject(':core:auth:domain')?.name = 'domain'
 

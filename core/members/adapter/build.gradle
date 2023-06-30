@@ -1,6 +1,6 @@
 dependencies {
-    implementation(project(':core:members:domain'))
-    implementation(project(':core:members:application'))
+    implementation(project(':core:members:models'))
+    implementation(project(':core:members:service-port'))
 
     // web
     implementation 'org.springframework.boot:spring-boot-starter-web'

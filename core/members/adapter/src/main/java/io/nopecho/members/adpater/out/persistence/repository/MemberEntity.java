@@ -1,9 +1,9 @@
 package io.nopecho.members.adpater.out.persistence.repository;
 
-import io.nopecho.members.domain.Email;
-import io.nopecho.members.domain.Member;
-import io.nopecho.members.domain.MemberId;
-import io.nopecho.members.domain.Name;
+import io.nopecho.members.models.Email;
+import io.nopecho.members.models.Member;
+import io.nopecho.members.models.MemberId;
+import io.nopecho.members.models.Name;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

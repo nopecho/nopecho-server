@@ -8,5 +8,9 @@ public interface CommandHandler<T extends Command, R extends EventPayload> {
 
     R handle(T command);
 
-    void validation(T command);
+    default void validation(T command) {
+        command.selfValidation();
+    }
+
+    ;
 }

@@ -1,6 +1,6 @@
 dependencies {
-    implementation(project(':core:auth:domain'))
-    implementation(project(':core:auth:application'))
+    implementation(project(':core:auth:models'))
+    implementation(project(':core:auth:service-port'))
 
     implementation 'org.springframework.boot:spring-boot-starter-web'
 

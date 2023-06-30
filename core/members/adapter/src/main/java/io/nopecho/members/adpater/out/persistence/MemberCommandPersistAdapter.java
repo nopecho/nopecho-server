@@ -2,8 +2,8 @@ package io.nopecho.members.adpater.out.persistence;
 
 import io.nopecho.members.adpater.out.persistence.repository.MemberEntity;
 import io.nopecho.members.adpater.out.persistence.repository.MemberJdbcRepository;
-import io.nopecho.members.application.port.out.SaveMemberPort;
-import io.nopecho.members.domain.Member;
+import io.nopecho.members.models.Member;
+import io.nopecho.members.ports.out.SaveMemberPort;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
