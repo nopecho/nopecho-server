@@ -23,9 +23,9 @@ include 'supports:aop'
  */
 include 'core'
 
-include 'core:spring-events'
-include 'core:spring-events:adapter'
-include 'core:spring-events:service-port'
+include 'core:domain-events'
+include 'core:domain-events:adapter'
+include 'core:domain-events:service-port'
 
 include 'core:members'
 include 'core:members:adapter'
