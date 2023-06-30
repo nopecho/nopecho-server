@@ -15,15 +15,7 @@ public class SpringDataEventStore implements SaveDomainEventPort {
 
     @Override
     public void save(DomainEvent event) {
-        repository.save(createFrom(event));
-    }
-
-    private DomainEventEntity createFrom(DomainEvent event) {
-        return DomainEventEntity.create(
-                event.getId(),
-                event.getType(),
-                event.getPayloadObject(),
-                event.getOccurredAt()
-        );
+        DomainEventEntity eventEntity = DomainEventEntity.of(event);
+        repository.save(eventEntity);
     }
 }

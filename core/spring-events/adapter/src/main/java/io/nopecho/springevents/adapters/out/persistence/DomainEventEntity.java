@@ -1,5 +1,6 @@
 package io.nopecho.springevents.adapters.out.persistence;
 
+import io.nopecho.event.DomainEvent;
 import io.nopecho.utils.Serializer;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -33,8 +34,15 @@ public class DomainEventEntity {
     @Version
     private Long version;
 
-    public static DomainEventEntity create(Long id, String type, Object payload, LocalDateTime occurredAt) {
-        Map<String, Object> stringObjectMap = Serializer.convertMap(payload);
-        return new DomainEventEntity(id, type, stringObjectMap, occurredAt, LocalDateTime.now(), LocalDateTime.now(), null);
+    public static DomainEventEntity of(DomainEvent event) {
+        Map<String, Object> stringObjectMap = Serializer.convertMap(event.getPayloadObject());
+
+        return new DomainEventEntity(
+                event.getId(),
+                event.getType(),
+                stringObjectMap,
+                event.getOccurredAt(),
+                LocalDateTime.now(), LocalDateTime.now(), null
+        );
     }
 }
