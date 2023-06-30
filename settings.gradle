@@ -40,11 +40,9 @@ include 'core:auth:models'
 
 /**
  * app
- * |_app-worker
- * |_app-api
- * |_app-batch
- * .
- * .
+ * |-app-api
+ * |-app-xx
+ * |-app-xxx
  * - 독립적으로 실행 가능한 애플리케이션 모듈 계층
  * - core 계층의 adapter 모듈을 조합해서 실행 가능한 애플리케이션을 제공하는 책임
  */
