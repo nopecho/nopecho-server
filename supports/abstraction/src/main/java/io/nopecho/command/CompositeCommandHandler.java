@@ -23,6 +23,7 @@ public abstract class CompositeCommandHandler implements CommandHandler<Command,
     @Override
     public EventPayload handle(Command command) {
         if (canHandle(command)) {
+            validation(command);
             return handleOrThrow(command);
         }
         throw new RuntimeException(String.format("not found command handler to command: %s", getCommandName(command)));

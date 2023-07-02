@@ -11,6 +11,4 @@ public interface CommandHandler<T extends Command, R extends EventPayload> {
     default void validation(T command) {
         command.selfValidation();
     }
-
-    ;
 }

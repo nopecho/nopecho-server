@@ -8,16 +8,9 @@ import lombok.Getter;
 @Builder
 public class SignupCommand implements Command {
 
-    private String name;
-    private String email;
-    private String loginToken;
-
-    private SignupCommand(String name, String email, String loginToken) {
-        this.name = name;
-        this.email = email;
-        this.loginToken = loginToken;
-        selfValidation();
-    }
+    private final String name;
+    private final String email;
+    private final String loginToken;
 
     @Override
     public void selfValidation() {
