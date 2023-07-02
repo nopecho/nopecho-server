@@ -19,7 +19,7 @@ public class MemberQueryPersistAdapter implements QueryMemberPort {
 
     @Override
     public Member findByEmail(Email email) {
-        return repository.findByEmail(email.get())
+        return repository.findByEmail(email.getValue())
                 .orElseThrow(NoSuchElementException::new)
                 .toDomain();
     }

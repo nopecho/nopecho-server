@@ -38,8 +38,8 @@ public class MemberEntity {
     public static MemberEntity from(Member member) {
         return new MemberEntity(
                 member.getId().get(),
-                member.getName().get(),
-                member.getEmail().get(),
+                member.getName().getValue(),
+                member.getEmail().getValue(),
                 null,
                 null,
                 null
@@ -47,7 +47,7 @@ public class MemberEntity {
     }
 
     public Member toDomain() {
-        return Member.from(
+        return Member.of(
                 MemberId.of(this.id),
                 Name.of(this.name),
                 Email.of(this.email));

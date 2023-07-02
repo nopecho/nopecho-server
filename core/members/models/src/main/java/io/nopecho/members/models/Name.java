@@ -18,7 +18,7 @@ public class Name implements ValueObject<String>, SelfValidator {
     }
 
     @Override
-    public String get() {
+    public String getValue() {
         return this.name;
     }
 

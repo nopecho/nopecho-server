@@ -16,7 +16,7 @@ public class MemberId implements ValueObject<Long>, SelfValidator {
     }
 
     @Override
-    public Long get() {
+    public Long getValue() {
         return this.id;
     }
 

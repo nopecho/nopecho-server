@@ -13,11 +13,11 @@ public class MemberSignupEvent implements EventPayload {
 
     private MemberSignupEvent(Member member) {
         this.id = member.getId().get().toString();
-        this.name = member.getName().get();
-        this.email = member.getEmail().get();
+        this.name = member.getName().getValue();
+        this.email = member.getEmail().getValue();
     }
 
-    public static MemberSignupEvent of(Member member) {
+    public static MemberSignupEvent from(Member member) {
         return new MemberSignupEvent(member);
     }
 }

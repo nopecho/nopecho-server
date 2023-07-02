@@ -34,21 +34,21 @@ public class SignupCommandHandler implements CommandHandler<SignupCommand, Membe
     public MemberSignupEvent handle(SignupCommand command) {
         validation(command);
 
-        Member member = Member.createFrom(
+        Member member = Member.create(
                 Name.of(command.getName()),
                 Email.of(command.getEmail())
         );
 
         Member saved = savePort.save(member);
 
-        return MemberSignupEvent.of(saved);
+        return MemberSignupEvent.from(saved);
     }
 
     @Override
     public void validation(SignupCommand command) {
         Email email = Email.of(command.getEmail());
         if (isDuplicateEmail(email)) {
-            throw new IllegalArgumentException("is exist email. email: " + email.get());
+            throw new IllegalArgumentException("is exist email. email: " + email.getValue());
         }
     }
 

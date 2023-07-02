@@ -16,13 +16,13 @@ class MemberTest {
     @DisplayName("회원 생성 시 USER 권한을 가진다.")
     @Test
     void createRole() {
-        sut = Member.createFrom(ANY_NAME, ANY_EMAIL);
+        sut = Member.create(ANY_NAME, ANY_EMAIL);
     }
 
     @DisplayName("회원 생성 시 id는 자동 생성 된다.")
     @Test
     void createId() {
-        sut = Member.createFrom(ANY_NAME, ANY_EMAIL);
+        sut = Member.create(ANY_NAME, ANY_EMAIL);
 
         MemberId actual = sut.getId();
         System.out.println(actual.get());

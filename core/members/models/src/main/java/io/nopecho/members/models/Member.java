@@ -16,12 +16,11 @@ public class Member {
     @With
     private final Email email;
 
-
-    public static Member from(MemberId id, Name name, Email email) {
+    public static Member of(MemberId id, Name name, Email email) {
         return new Member(id, name, email);
     }
 
-    public static Member createFrom(Name name, Email email) {
+    public static Member create(Name name, Email email) {
         return new Member(MemberId.of(LongIdGenerator.gen()), name, email);
     }
 }
