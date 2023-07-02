@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @RequiredArgsConstructor
 public class CommandHandlerConfig {
+
     private final SignupCommandHandler signupCommandHandler;
 
     @Bean

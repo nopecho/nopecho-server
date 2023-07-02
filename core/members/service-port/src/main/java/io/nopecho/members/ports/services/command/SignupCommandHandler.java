@@ -28,8 +28,8 @@ public class SignupCommandHandler implements CommandHandler<SignupCommand, Membe
         return command.isType(SignupCommand.class);
     }
 
-    @Transactional
     @EventPublish
+    @Transactional
     @Override
     public MemberSignupEvent handle(SignupCommand command) {
         validation(command);
