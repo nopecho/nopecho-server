@@ -1,5 +1,6 @@
 dependencies {
     implementation(project(':core:auth:models'))
 
-    implementation 'io.jsonwebtoken:jjwt:0.9.1'
+    implementation(project(':core:members:models'))
+    implementation(project(':core:members:service-port'))
 }

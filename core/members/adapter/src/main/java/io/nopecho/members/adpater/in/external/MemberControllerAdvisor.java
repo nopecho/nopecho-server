@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 @Slf4j
 @RestControllerAdvice
-public class ControllerAdvisor {
+public class MemberControllerAdvisor {
 
     @ExceptionHandler(RuntimeException.class)
     public ResponseEntity<?> handleBadRequest(RuntimeException e) {

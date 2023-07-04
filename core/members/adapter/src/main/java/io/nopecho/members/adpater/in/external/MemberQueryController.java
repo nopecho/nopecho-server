@@ -1,7 +1,7 @@
 package io.nopecho.members.adpater.in.external;
 
+import io.nopecho.members.ports.in.query.MemberQueryHandler;
 import io.nopecho.members.ports.in.query.TestQuery;
-import io.nopecho.members.ports.in.query.UserQueryHandler;
 import io.nopecho.query.QueryResult;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -15,9 +15,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api")
 @RequiredArgsConstructor
-public class QueryController {
+public class MemberQueryController {
 
-    private final UserQueryHandler queryHandler;
+    private final MemberQueryHandler queryHandler;
 
     @GetMapping("/v1/test")
     public ResponseEntity<?> get(@RequestParam String name) {

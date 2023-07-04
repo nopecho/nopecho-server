@@ -7,6 +7,7 @@ import io.nopecho.members.events.MemberSignupEvent;
 import io.nopecho.members.models.Email;
 import io.nopecho.members.models.Member;
 import io.nopecho.members.models.Name;
+import io.nopecho.members.models.PhoneNumber;
 import io.nopecho.members.ports.in.command.SignupCommand;
 import io.nopecho.members.ports.out.QueryMemberPort;
 import io.nopecho.members.ports.out.SaveMemberPort;
@@ -36,7 +37,8 @@ public class SignupCommandHandler implements CommandHandler<SignupCommand, Membe
 
         Member member = Member.create(
                 Name.of(command.getName()),
-                Email.of(command.getEmail())
+                Email.of(command.getEmail()),
+                PhoneNumber.ofKorea("010")
         );
 
         Member saved = savePort.save(member);
