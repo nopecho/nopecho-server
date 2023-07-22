@@ -11,6 +11,7 @@ import java.lang.annotation.Target;
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
 public @interface EventPublish {
+
     boolean compensation() default false;
 
     Class<? extends EventPayload> compensationType() default VoidEvent.class;
