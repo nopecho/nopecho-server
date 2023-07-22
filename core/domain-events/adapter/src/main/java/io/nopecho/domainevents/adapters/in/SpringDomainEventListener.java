@@ -1,6 +1,6 @@
 package io.nopecho.domainevents.adapters.in;
 
-import io.nopecho.domainevents.ports.in.StoreDomainEventUseCase;
+import io.nopecho.domainevents.services.ports.in.StoreDomainEventUseCase;
 import io.nopecho.event.DomainEvent;
 import io.nopecho.event.DomainEventListener;
 import lombok.RequiredArgsConstructor;

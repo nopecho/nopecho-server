@@ -1,8 +1,0 @@
-dependencies {
-    implementation(project(':supports:aop'))
-
-    implementation(project(':core:members:models'))
-    implementation(project(':core:members:models:events'))
-
-    implementation 'org.springframework:spring-tx'
-}

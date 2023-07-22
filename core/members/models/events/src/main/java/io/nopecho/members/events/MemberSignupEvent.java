@@ -1,7 +1,7 @@
 package io.nopecho.members.events;
 
 import io.nopecho.event.EventPayload;
-import io.nopecho.members.models.Member;
+import io.nopecho.members.domain.Member;
 import lombok.Getter;
 
 @Getter

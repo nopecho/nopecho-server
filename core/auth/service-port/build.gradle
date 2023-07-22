@@ -1,6 +1,0 @@
-dependencies {
-    implementation(project(':core:auth:models'))
-
-    implementation(project(':core:members:models'))
-    implementation(project(':core:members:service-port'))
-}

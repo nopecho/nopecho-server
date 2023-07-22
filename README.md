@@ -54,10 +54,12 @@ core
 |-{domain}
   |-adapter
   |-models
-  |-service-port
+    |-domain
+    |-events
+  |-service
 ...
 - core: 시스템의 핵심 도메인이 존재하는 모듈 계층
   - adapter: 도메인의 외부 의존 해결에 대한 책임
-  - models: POJO 형식의 순수 자바 코드로 핵심 도메인 모델을 정의하는 책임
-  - service-port: 도메인 내부 서비스 핸들링, 트랜잭션 관리에 대한 책임
+  - models: POJO 형식의 순수 자바 코드로 핵심 도메인 모델 및 도메인 이벤트에 대한 책임
+  - service: 도메인 내부 서비스 핸들링, 트랜잭션 관리에 대한 책임
 ```

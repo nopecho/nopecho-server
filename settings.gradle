@@ -25,18 +25,20 @@ include 'core'
 
 include 'core:domain-events'
 include 'core:domain-events:adapter'
-include 'core:domain-events:service-port'
+include 'core:domain-events:service'
 
 include 'core:members'
 include 'core:members:adapter'
-include 'core:members:service-port'
+include 'core:members:service'
 include 'core:members:models'
+include 'core:members:models:domain'
 include 'core:members:models:events'
 
 include 'core:auth'
 include 'core:auth:adapter'
-include 'core:auth:service-port'
+include 'core:auth:service'
 include 'core:auth:models'
+include 'core:auth:models:domain'
 
 /**
  * app

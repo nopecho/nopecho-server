@@ -1,0 +1,5 @@
+dependencies {
+    api(project(':core:auth:models:domain'))
+
+    api(project(':core:members:service'))
+}

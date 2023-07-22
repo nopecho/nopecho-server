@@ -1,7 +1,7 @@
 package io.nopecho.auth.adapters.in;
 
-import io.nopecho.auth.models.SignMethod;
-import io.nopecho.auth.ports.in.LoginUseCase;
+import io.nopecho.auth.domain.SignMethod;
+import io.nopecho.auth.services.ports.in.LoginUseCase;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;

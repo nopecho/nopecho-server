@@ -1,5 +1,5 @@
 dependencies {
-    implementation(project(':core:domain-events:service-port'))
+    api(project(':core:domain-events:service'))
 
     implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
     implementation 'org.postgresql:postgresql'
