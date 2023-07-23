@@ -5,7 +5,7 @@ CREATE TABLE IF NOT EXISTS "members"
     email              varchar(255) NOT NULL,
     phone_number       varchar(255) NOT NULL,
     country_code       varchar(255) NOT NULL,
-    is_agree_marketing bool         NOT NULL,
+    is_agree_marketing boolean      NOT NULL,
     created_at         TIMESTAMPTZ DEFAULT NOW(),
     modified_at        TIMESTAMPTZ DEFAULT NOW(),
     version            BIGINT       NOT NULL

@@ -20,6 +20,18 @@ public class Accounts {
         return new Accounts(memberId, Providers, roles);
     }
 
+    public MemberId getMemberId() {
+        return this.memberId;
+    }
+
+    public Set<Provider> getProviders() {
+        return this.providers.getProviders();
+    }
+
+    public Set<Role> getRoles() {
+        return this.roles.getRoles();
+    }
+
     public Accounts add(Provider provider) {
         Providers added = this.providers.add(provider);
         return this.withProviders(added);
