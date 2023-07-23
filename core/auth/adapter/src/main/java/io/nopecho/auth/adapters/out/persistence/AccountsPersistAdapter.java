@@ -14,7 +14,7 @@ public class AccountsPersistAdapter {
 
     private final AccountsJdbcRepository repository;
 
-    public Accounts create(Accounts accounts) {
+    public Accounts save(Accounts accounts) {
         AccountsEntity entity = AccountsEntity.from(accounts);
         return repository.save(entity).toDomain();
     }

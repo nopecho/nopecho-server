@@ -2,6 +2,8 @@ package io.nopecho.auth.adapters.out.persistence.repository;
 
 
 import io.nopecho.auth.domain.Accounts;
+import io.nopecho.auth.domain.Role;
+import io.nopecho.auth.domain.Roles;
 import io.nopecho.members.domain.MemberId;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -71,7 +73,14 @@ public class AccountsEntity {
         return Accounts.of(
                 MemberId.of(this.memberId),
                 null,
-                null
+                toRoles()
         );
+    }
+
+    private Roles toRoles() {
+        Set<Role> roleSet = this.roles.stream()
+                .map(RoleEntity::getRole)
+                .collect(Collectors.toSet());
+        return Roles.from(roleSet);
     }
 }
