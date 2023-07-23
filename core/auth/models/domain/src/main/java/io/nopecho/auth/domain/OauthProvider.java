@@ -6,18 +6,18 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor(access = AccessLevel.PROTECTED)
-public class OauthProvider implements SignProvider {
+public class OauthProvider implements Provider {
 
-    private final SignMethod method;
-    private final SignToken token;
+    private final Method method;
+    private final Token token;
 
     @Override
-    public SignToken getToken() {
+    public Token getToken() {
         return this.token;
     }
 
     @Override
-    public SignMethod getSignMethod() {
+    public Method getMethod() {
         return this.method;
     }
 }

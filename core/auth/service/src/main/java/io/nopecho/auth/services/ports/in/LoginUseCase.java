@@ -1,8 +1,8 @@
 package io.nopecho.auth.services.ports.in;
 
 
-import io.nopecho.auth.domain.SignMethod;
+import io.nopecho.auth.domain.Method;
 
 public interface LoginUseCase {
-    void login(SignMethod method);
+    void login(Method method);
 }

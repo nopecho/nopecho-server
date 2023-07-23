@@ -5,40 +5,43 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 import java.util.Arrays;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 @Getter
 @AllArgsConstructor(access = AccessLevel.PROTECTED)
-public class MemberRole {
+public class Roles {
 
-    private final MemberId memberId;
     private final Set<Role> roles;
 
-    public static MemberRole create(MemberId memberId) {
-        return new MemberRole(memberId, Set.of(Role.USER));
+    public static Roles create() {
+        return new Roles(Set.of(Role.USER));
     }
 
-    public static MemberRole from(MemberId memberId, Set<Role> roles) {
-        return new MemberRole(memberId, roles);
+    public static Roles from(Set<Role> roles) {
+        return new Roles(roles);
     }
 
-    public MemberRole gives(Role... roles) {
-        HashSet<Role> withRoles = new HashSet<>(this.roles);
-        withRoles.addAll(List.of(roles));
+    public Roles gives(Role... roles) {
+        this.roles.addAll(List.of(roles));
 
-        return new MemberRole(this.memberId, withRoles);
+        return Roles.from(this.roles);
     }
 
-    public MemberRole removes(Role... roles) {
+    public Roles gives(Set<Role> roles) {
+        this.roles.addAll(roles);
+
+        return Roles.from(this.roles);
+    }
+
+    public Roles removes(Role... roles) {
         List<Role> removeList = Arrays.stream(roles).toList();
         Set<Role> removedRoles = this.roles.stream()
                 .filter(r -> !removeList.contains(r))
                 .collect(Collectors.toSet());
 
-        return new MemberRole(this.memberId, removedRoles);
+        return new Roles(removedRoles);
     }
 
     public boolean isExistAdmin() {

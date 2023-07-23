@@ -1,6 +1,6 @@
 package io.nopecho.auth.adapters.in;
 
-import io.nopecho.auth.domain.SignMethod;
+import io.nopecho.auth.domain.Method;
 import io.nopecho.auth.services.ports.in.LoginUseCase;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -20,7 +20,7 @@ public class AuthController {
 
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestParam String method) {
-        SignMethod signMethod = SignMethod.valueOf(method);
+        Method signMethod = Method.valueOf(method);
 
         useCase.login(signMethod);
 

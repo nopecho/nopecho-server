@@ -1,6 +1,6 @@
 package io.nopecho.auth.domain;
 
-public enum SignMethod {
+public enum Method {
     GOOGLE,
     APPLE,
     KAKAO,

@@ -6,22 +6,22 @@ import io.nopecho.utils.Throws;
 import lombok.Value;
 
 @Value(staticConstructor = "of")
-public class MemberId implements ValueObject<Long>, SelfValidator {
+public class Token implements ValueObject<String>, SelfValidator {
 
-    Long id;
+    String token;
 
-    private MemberId(Long id) {
-        this.id = id;
+    private Token(String token) {
+        this.token = token;
         selfValidation();
     }
 
     @Override
-    public Long getValue() {
-        return this.id;
+    public String getValue() {
+        return this.token;
     }
 
     @Override
     public void selfValidation() {
-        Throws.ifNull(this.id, "member id must be not null");
+        Throws.ifNullOrBlank(this.token, "sign token must be not null");
     }
 }

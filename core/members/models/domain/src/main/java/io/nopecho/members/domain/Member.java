@@ -38,22 +38,22 @@ public class Member {
         return new Member(MemberId.of(LongIdGenerator.gen()), name, email, phoneNumber, disagreement);
     }
 
-    public Member change(Name name) {
+    public Member modify(Name name) {
         return this.withName(name);
     }
 
-    public Member change(Email email) {
+    public Member modify(Email email) {
         return this.withEmail(email);
     }
 
-    public Member change(PhoneNumber phoneNumber) {
+    public Member modify(PhoneNumber phoneNumber) {
         return this.withPhoneNumber(phoneNumber);
     }
 
-    public Member change(Name name, Email email, PhoneNumber phoneNumber) {
-        return this.change(name)
-                .change(email)
-                .change(phoneNumber);
+    public Member modify(Name name, Email email, PhoneNumber phoneNumber) {
+        return this.modify(name)
+                .modify(email)
+                .modify(phoneNumber);
     }
 
     public Member agreeMarketing() {
