@@ -1,6 +1,8 @@
 package io.nopecho.auth.domain;
 
-public interface Provider {
+import io.nopecho.utils.SelfValidator;
+
+public interface Provider extends SelfValidator {
     Token getToken();
 
     Method getMethod();

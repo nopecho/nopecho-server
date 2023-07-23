@@ -18,14 +18,25 @@ public class Providers {
         return new Providers(providers);
     }
 
+    public static Providers from(Provider provider) {
+        return Providers.of(provider);
+    }
+
     public static Providers of(Provider... provider) {
-        HashSet<Provider> providers = new HashSet<>(List.of(provider));
+        Set<Provider> providers = new HashSet<>(List.of(provider));
         return Providers.from(providers);
     }
 
-    public Providers add(Provider provider) {
-        this.providers.add(provider);
+    public Providers add(Provider... provider) {
+        Set<Provider> providers = new HashSet<>(List.of(provider));
+        providers.addAll(this.providers);
 
-        return Providers.from(this.providers);
+        return Providers.from(providers);
+    }
+
+    public Providers add(Set<Provider> providers) {
+        providers.addAll(this.providers);
+
+        return Providers.from(providers);
     }
 }

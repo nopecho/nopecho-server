@@ -22,23 +22,43 @@ public class Accounts {
         return new Accounts(memberId, Providers, roles);
     }
 
-    public Accounts addProvider(Provider provider) {
+    public Accounts add(Provider provider) {
         Providers added = this.providers.add(provider);
         return this.withProviders(added);
     }
 
-    public Accounts giveRole(Role role) {
+    public Accounts give(Role role) {
         Roles gives = this.roles.gives(role);
         return this.withRoles(gives);
     }
 
-    public Accounts giveRoles(Role... role) {
+    public Accounts gives(Role... role) {
         Roles gives = this.roles.gives(role);
         return this.withRoles(gives);
     }
 
-    public Accounts giveRoles(Set<Role> roles) {
+    public Accounts gives(Set<Role> roles) {
         Roles gives = this.roles.gives(roles);
         return this.withRoles(gives);
+    }
+
+    public boolean isOnlyUser() {
+        return this.roles.isOnlyUser();
+    }
+
+    public boolean isUser() {
+        return this.roles.isExistUser();
+    }
+
+    public boolean isAdmin() {
+        return this.roles.isExistAdmin();
+    }
+
+    public boolean isNoneAdmin() {
+        return this.roles.isNoneAdmin();
+    }
+
+    public int roleSize() {
+        return this.roles.size();
     }
 }

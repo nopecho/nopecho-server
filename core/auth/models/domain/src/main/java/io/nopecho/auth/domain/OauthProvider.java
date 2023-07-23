@@ -1,15 +1,19 @@
 package io.nopecho.auth.domain;
 
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
+import io.nopecho.utils.Throws;
 import lombok.Getter;
 
 @Getter
-@AllArgsConstructor(access = AccessLevel.PROTECTED)
 public class OauthProvider implements Provider {
 
     private final Method method;
     private final Token token;
+
+    protected OauthProvider(Method method, Token token) {
+        this.method = method;
+        this.token = token;
+        this.selfValidation();
+    }
 
     @Override
     public Token getToken() {
@@ -19,5 +23,12 @@ public class OauthProvider implements Provider {
     @Override
     public Method getMethod() {
         return this.method;
+    }
+
+    @Override
+    public void selfValidation() {
+        Throws.ifNull(this.method, "accounts login method must be not null");
+        Throws.ifNull(this.token, "accounts token must be not null");
+        Throws.ifNullOrBlank(this.token.getValue(), "account token value must be not null or blank");
     }
 }

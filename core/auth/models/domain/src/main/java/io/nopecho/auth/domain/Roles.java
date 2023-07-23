@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -23,16 +24,20 @@ public class Roles {
         return new Roles(roles);
     }
 
-    public Roles gives(Role... roles) {
-        this.roles.addAll(List.of(roles));
+    public static Roles of(Role... roles) {
+        Set<Role> roleSet = new HashSet<>(List.of(roles));
+        return Roles.from(roleSet);
+    }
 
-        return Roles.from(this.roles);
+    public Roles gives(Role... roles) {
+        Set<Role> role = new HashSet<>(List.of(roles));
+        role.addAll(this.roles);
+        return Roles.from(role);
     }
 
     public Roles gives(Set<Role> roles) {
-        this.roles.addAll(roles);
-
-        return Roles.from(this.roles);
+        roles.addAll(this.roles);
+        return Roles.from(roles);
     }
 
     public Roles removes(Role... roles) {
@@ -41,7 +46,7 @@ public class Roles {
                 .filter(r -> !removeList.contains(r))
                 .collect(Collectors.toSet());
 
-        return new Roles(removedRoles);
+        return Roles.from(removedRoles);
     }
 
     public boolean isExistAdmin() {
@@ -61,5 +66,9 @@ public class Roles {
     public boolean isNoneAdmin() {
         return this.roles.stream()
                 .noneMatch(Role.ADMIN::equals);
+    }
+
+    public int size() {
+        return this.roles.size();
     }
 }
