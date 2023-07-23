@@ -2,13 +2,11 @@ package io.nopecho.auth.domain;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
 
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-@Getter
 @AllArgsConstructor(access = AccessLevel.PROTECTED)
 public class Providers {
 

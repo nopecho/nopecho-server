@@ -3,12 +3,10 @@ package io.nopecho.auth.domain;
 import io.nopecho.members.domain.MemberId;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
 import lombok.With;
 
 import java.util.Set;
 
-@Getter
 @AllArgsConstructor(access = AccessLevel.PROTECTED)
 public class Accounts {
 

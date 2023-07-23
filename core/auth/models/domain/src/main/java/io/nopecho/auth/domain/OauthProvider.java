@@ -1,13 +1,11 @@
 package io.nopecho.auth.domain;
 
 import io.nopecho.utils.Throws;
-import lombok.Getter;
 
-@Getter
-public class OauthProvider implements Provider {
+public abstract class OauthProvider implements Provider {
 
-    private final Method method;
-    private final Token token;
+    protected final Method method;
+    protected final Token token;
 
     protected OauthProvider(Method method, Token token) {
         this.method = method;
