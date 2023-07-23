@@ -1,5 +1,6 @@
 package io.nopecho.auth.adapters.out.persistence.repository;
 
+import io.nopecho.auth.domain.Method;
 import io.nopecho.auth.domain.Provider;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -16,7 +17,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor(access = AccessLevel.PROTECTED)
 public class ProviderEntity {
 
-    private final String method;
+    private final Method method;
     private final String token;
     @CreatedDate
     private final LocalDateTime createdAt;
@@ -25,7 +26,7 @@ public class ProviderEntity {
 
     public static ProviderEntity from(Provider provider) {
         return new ProviderEntity(
-                provider.getMethod().name(),
+                provider.getMethod(),
                 provider.getToken().getValue(),
                 null,
                 null
