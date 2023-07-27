@@ -68,7 +68,7 @@ public class Roles {
                 .noneMatch(Role.ADMIN::equals);
     }
 
-    public int size() {
+    public int count() {
         return this.roles.size();
     }
 }

@@ -39,7 +39,7 @@ class AccountsTest {
 
         Accounts accounts = sut.give(Role.ADMIN);
         boolean actual = accounts.isAdmin();
-        int actual2 = accounts.roleSize();
+        int actual2 = accounts.roleCount();
 
         assertThat(actual).isTrue();
         assertThat(actual2).isEqualTo(2);
@@ -50,7 +50,7 @@ class AccountsTest {
         sut = addAccounts(1L);
 
         Accounts accounts = sut.gives(Role.ADMIN, Role.ADMIN, Role.USER, Role.USER);
-        int actual = accounts.roleSize();
+        int actual = accounts.roleCount();
 
         assertThat(actual).isEqualTo(2);
     }

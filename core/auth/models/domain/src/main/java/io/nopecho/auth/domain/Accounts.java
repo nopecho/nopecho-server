@@ -68,7 +68,7 @@ public class Accounts {
         return this.roles.isNoneAdmin();
     }
 
-    public int roleSize() {
-        return this.roles.size();
+    public int roleCount() {
+        return this.roles.count();
     }
 }
