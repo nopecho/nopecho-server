@@ -37,7 +37,7 @@ class AccountsTest {
     void addRole() {
         sut = addAccounts(1L);
 
-        Accounts accounts = sut.give(Role.ADMIN);
+        Accounts accounts = sut.giveRole(Role.ADMIN);
         boolean actual = accounts.isAdmin();
         int actual2 = accounts.roleCount();
 
@@ -49,7 +49,7 @@ class AccountsTest {
     void addRoles() {
         sut = addAccounts(1L);
 
-        Accounts accounts = sut.gives(Role.ADMIN, Role.ADMIN, Role.USER, Role.USER);
+        Accounts accounts = sut.giveRoles(Role.ADMIN, Role.ADMIN, Role.USER, Role.USER);
         int actual = accounts.roleCount();
 
         assertThat(actual).isEqualTo(2);
@@ -58,7 +58,7 @@ class AccountsTest {
     Accounts addAccounts(Long memberId) {
         return Accounts.of(
                 MemberId.of(memberId),
-                Providers.from(new FakeEmailProvider()),
+                Signatures.from(Signature.of(Method.EMAIL, Token.of(""))),
                 Roles.create()
         );
     }
@@ -66,26 +66,8 @@ class AccountsTest {
     Accounts addAccounts(Role... roles) {
         return Accounts.of(
                 MemberId.of(1L),
-                Providers.from(new FakeEmailProvider()),
+                Signatures.from(Signature.of(Method.EMAIL, Token.of(""))),
                 Roles.of(roles)
         );
-    }
-
-    static class FakeEmailProvider implements Provider {
-
-        @Override
-        public Token getToken() {
-            return Token.of("token");
-        }
-
-        @Override
-        public Method getMethod() {
-            return Method.EMAIL;
-        }
-
-        @Override
-        public void selfValidation() {
-            System.out.println("self validation!");
-        }
     }
 }

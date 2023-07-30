@@ -12,42 +12,42 @@ public class Accounts {
 
     private final MemberId memberId;
     @With
-    private final Providers providers;
+    private final Signatures signatures;
     @With
     private final Roles roles;
 
-    public static Accounts of(MemberId memberId, Providers Providers, Roles roles) {
-        return new Accounts(memberId, Providers, roles);
+    public static Accounts of(MemberId memberId, Signatures Signatures, Roles roles) {
+        return new Accounts(memberId, Signatures, roles);
     }
 
     public MemberId getMemberId() {
         return this.memberId;
     }
 
-    public Set<Provider> getProviders() {
-        return this.providers.getProviders();
+    public Set<Signature> getSignatures() {
+        return this.signatures.getSignatures();
     }
 
     public Set<Role> getRoles() {
         return this.roles.getRoles();
     }
 
-    public Accounts add(Provider provider) {
-        Providers added = this.providers.add(provider);
-        return this.withProviders(added);
+    public Accounts addSignature(Signature signature) {
+        Signatures added = this.signatures.add(signature);
+        return this.withSignatures(added);
     }
 
-    public Accounts give(Role role) {
+    public Accounts giveRole(Role role) {
         Roles gives = this.roles.gives(role);
         return this.withRoles(gives);
     }
 
-    public Accounts gives(Role... role) {
+    public Accounts giveRoles(Role... role) {
         Roles gives = this.roles.gives(role);
         return this.withRoles(gives);
     }
 
-    public Accounts gives(Set<Role> roles) {
+    public Accounts giveRoles(Set<Role> roles) {
         Roles gives = this.roles.gives(roles);
         return this.withRoles(gives);
     }

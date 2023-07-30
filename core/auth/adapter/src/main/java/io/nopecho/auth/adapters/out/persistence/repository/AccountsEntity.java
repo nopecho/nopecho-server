@@ -1,10 +1,9 @@
 package io.nopecho.auth.adapters.out.persistence.repository;
 
 
-import io.nopecho.auth.domain.Accounts;
-import io.nopecho.auth.domain.Role;
-import io.nopecho.auth.domain.Roles;
+import io.nopecho.auth.domain.*;
 import io.nopecho.members.domain.MemberId;
+import io.nopecho.utils.LongIdGenerator;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -30,7 +29,7 @@ public class AccountsEntity {
     private final Long memberId;
 
     @MappedCollection(idColumn = "account_id")
-    private final Set<ProviderEntity> providers;
+    private final Set<SignatureEntity> signatures;
 
     @MappedCollection(idColumn = "account_id")
     private final Set<RoleEntity> roles;
@@ -43,18 +42,24 @@ public class AccountsEntity {
     private final Long version;
 
     public static AccountsEntity from(Accounts accounts) {
-        Set<RoleEntity> roleForm = roleForm(accounts);
-        Set<ProviderEntity> providerFrom = providerFrom(accounts);
+        Set<RoleEntity> roleEntities = roleForm(accounts);
+        Set<SignatureEntity> signatureEntities = signatureFrom(accounts);
 
         return new AccountsEntity(
-                null,
+                LongIdGenerator.gen(),
                 accounts.getMemberId().get(),
-                providerFrom,
-                roleForm,
+                signatureEntities,
+                roleEntities,
                 null,
                 null,
                 null
         );
+    }
+
+    private static Set<SignatureEntity> signatureFrom(Accounts accounts) {
+        return accounts.getSignatures().stream()
+                .map(SignatureEntity::from)
+                .collect(Collectors.toSet());
     }
 
     private static Set<RoleEntity> roleForm(Accounts accounts) {
@@ -63,16 +68,10 @@ public class AccountsEntity {
                 .collect(Collectors.toSet());
     }
 
-    private static Set<ProviderEntity> providerFrom(Accounts accounts) {
-        return accounts.getProviders().stream()
-                .map(ProviderEntity::from)
-                .collect(Collectors.toSet());
-    }
-
     public Accounts toDomain() {
         return Accounts.of(
                 MemberId.of(this.memberId),
-                null,
+                toSignatures(),
                 toRoles()
         );
     }
@@ -82,5 +81,12 @@ public class AccountsEntity {
                 .map(RoleEntity::getRole)
                 .collect(Collectors.toSet());
         return Roles.from(roleSet);
+    }
+
+    private Signatures toSignatures() {
+        Set<Signature> signatureSet = this.signatures.stream()
+                .map(SignatureEntity::toSignature)
+                .collect(Collectors.toSet());
+        return Signatures.from(signatureSet);
     }
 }

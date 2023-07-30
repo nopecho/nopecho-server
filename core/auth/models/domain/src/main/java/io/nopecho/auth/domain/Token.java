@@ -15,6 +15,10 @@ public class Token implements ValueObject<String>, SelfValidator {
         selfValidation();
     }
 
+    public boolean equals(Token token) {
+        return this.token.equals(token.getToken());
+    }
+
     @Override
     public String getValue() {
         return this.token;

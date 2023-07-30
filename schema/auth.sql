@@ -15,7 +15,7 @@ CREATE TABLE IF NOT EXISTS "accounts_roles"
     modified_at TIMESTAMPTZ DEFAULT NOW()
 );
 
-CREATE TABLE IF NOT EXISTS "accounts_providers"
+CREATE TABLE IF NOT EXISTS "accounts_signatures"
 (
     accounts_id BIGINT       NOT NULL,
     method      varchar(255) NOT NULL,

@@ -1,7 +1,8 @@
 package io.nopecho.auth.adapters.out.persistence.repository;
 
 import io.nopecho.auth.domain.Method;
-import io.nopecho.auth.domain.Provider;
+import io.nopecho.auth.domain.Signature;
+import io.nopecho.auth.domain.Token;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -12,10 +13,10 @@ import org.springframework.data.relational.core.mapping.Table;
 import java.time.LocalDateTime;
 
 
-@Table("accounts_providers")
+@Table("accounts_signatures")
 @Getter
 @AllArgsConstructor(access = AccessLevel.PROTECTED)
-public class ProviderEntity {
+public class SignatureEntity {
 
     private final Method method;
     private final String token;
@@ -24,12 +25,16 @@ public class ProviderEntity {
     @LastModifiedDate
     private final LocalDateTime modifiedAt;
 
-    public static ProviderEntity from(Provider provider) {
-        return new ProviderEntity(
-                provider.getMethod(),
-                provider.getToken().getValue(),
+    public static SignatureEntity from(Signature signature) {
+        return new SignatureEntity(
+                signature.getMethod(),
+                signature.getToken().getValue(),
                 null,
                 null
         );
+    }
+
+    public Signature toSignature() {
+        return Signature.of(method, Token.of(token));
     }
 }
