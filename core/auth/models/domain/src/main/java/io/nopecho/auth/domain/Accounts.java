@@ -3,6 +3,7 @@ package io.nopecho.auth.domain;
 import io.nopecho.members.domain.MemberId;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.With;
 
 import java.util.Set;
@@ -10,6 +11,7 @@ import java.util.Set;
 @AllArgsConstructor(access = AccessLevel.PROTECTED)
 public class Accounts {
 
+    @Getter
     private final MemberId memberId;
     @With
     private final Signatures signatures;
@@ -18,10 +20,6 @@ public class Accounts {
 
     public static Accounts of(MemberId memberId, Signatures Signatures, Roles roles) {
         return new Accounts(memberId, Signatures, roles);
-    }
-
-    public MemberId getMemberId() {
-        return this.memberId;
     }
 
     public Set<Signature> getSignatures() {

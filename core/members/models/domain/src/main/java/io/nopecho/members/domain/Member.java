@@ -51,7 +51,7 @@ public class Member {
     }
 
     public Member modify(Name name, Email email, PhoneNumber phoneNumber) {
-        return this.modify(name)
+        return modify(name)
                 .modify(email)
                 .modify(phoneNumber);
     }
