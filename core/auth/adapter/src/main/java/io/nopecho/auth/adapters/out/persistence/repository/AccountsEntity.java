@@ -1,7 +1,9 @@
 package io.nopecho.auth.adapters.out.persistence.repository;
 
 
-import io.nopecho.auth.domain.*;
+import io.nopecho.auth.domain.Accounts;
+import io.nopecho.auth.domain.Signature;
+import io.nopecho.auth.domain.Signatures;
 import io.nopecho.members.domain.MemberId;
 import io.nopecho.utils.LongIdGenerator;
 import lombok.AccessLevel;
@@ -31,9 +33,6 @@ public class AccountsEntity {
     @MappedCollection(idColumn = "account_id")
     private final Set<SignatureEntity> signatures;
 
-    @MappedCollection(idColumn = "account_id")
-    private final Set<RoleEntity> roles;
-
     @CreatedDate
     private final LocalDateTime createdAt;
     @LastModifiedDate
@@ -42,14 +41,12 @@ public class AccountsEntity {
     private final Long version;
 
     public static AccountsEntity from(Accounts accounts) {
-        Set<RoleEntity> roleEntities = roleForm(accounts);
         Set<SignatureEntity> signatureEntities = signatureFrom(accounts);
 
         return new AccountsEntity(
                 LongIdGenerator.gen(),
                 accounts.getMemberId().get(),
                 signatureEntities,
-                roleEntities,
                 null,
                 null,
                 null
@@ -61,26 +58,11 @@ public class AccountsEntity {
                 .map(SignatureEntity::from)
                 .collect(Collectors.toSet());
     }
-
-    private static Set<RoleEntity> roleForm(Accounts accounts) {
-        return accounts.getRoles().stream()
-                .map(RoleEntity::from)
-                .collect(Collectors.toSet());
-    }
-
     public Accounts toDomain() {
         return Accounts.of(
                 MemberId.of(this.memberId),
-                toSignatures(),
-                toRoles()
+                toSignatures()
         );
-    }
-
-    private Roles toRoles() {
-        Set<Role> roleSet = this.roles.stream()
-                .map(RoleEntity::getRole)
-                .collect(Collectors.toSet());
-        return Roles.from(roleSet);
     }
 
     private Signatures toSignatures() {

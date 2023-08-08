@@ -15,59 +15,17 @@ class AccountsTest {
         assertThat(sut).isNotNull();
     }
 
-    @Test
-    void create2() {
-        sut = addAccounts(1L);
-
-        boolean actual = sut.isOnlyUser();
-
-        assertThat(actual).isTrue();
-    }
-
-    @Test
-    void create3() {
-        sut = addAccounts(1L);
-
-        boolean actual = sut.isNoneAdmin();
-
-        assertThat(actual).isTrue();
-    }
-
-    @Test
-    void addRole() {
-        sut = addAccounts(1L);
-
-        Accounts accounts = sut.giveRole(Role.ADMIN);
-        boolean actual = accounts.isAdmin();
-        int actual2 = accounts.roleCount();
-
-        assertThat(actual).isTrue();
-        assertThat(actual2).isEqualTo(2);
-    }
-
-    @Test
-    void addRoles() {
-        sut = addAccounts(1L);
-
-        Accounts accounts = sut.giveRoles(Role.ADMIN, Role.ADMIN, Role.USER, Role.USER);
-        int actual = accounts.roleCount();
-
-        assertThat(actual).isEqualTo(2);
-    }
-
     Accounts addAccounts(Long memberId) {
         return Accounts.of(
                 MemberId.of(memberId),
-                Signatures.from(Signature.of(Method.EMAIL, Token.of(""))),
-                Roles.create()
+                Signatures.from(Signature.of(Method.EMAIL, Token.of("")))
         );
     }
 
-    Accounts addAccounts(Role... roles) {
+    Accounts addAccounts() {
         return Accounts.of(
                 MemberId.of(1L),
-                Signatures.from(Signature.of(Method.EMAIL, Token.of(""))),
-                Roles.of(roles)
+                Signatures.from(Signature.of(Method.EMAIL, Token.of("")))
         );
     }
 }

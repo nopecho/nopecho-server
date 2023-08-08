@@ -1,4 +1,4 @@
-package io.nopecho.auth.domain;
+package io.nopecho.members.domain;
 
 public enum Role {
     USER,

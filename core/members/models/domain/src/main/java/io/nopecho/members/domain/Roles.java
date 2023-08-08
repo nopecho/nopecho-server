@@ -1,4 +1,4 @@
-package io.nopecho.auth.domain;
+package io.nopecho.members.domain;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -29,13 +29,13 @@ public class Roles {
         return Roles.from(roleSet);
     }
 
-    public Roles gives(Role... roles) {
+    public Roles add(Role... roles) {
         Set<Role> role = new HashSet<>(List.of(roles));
         role.addAll(this.roles);
         return Roles.from(role);
     }
 
-    public Roles gives(Set<Role> roles) {
+    public Roles add(Set<Role> roles) {
         roles.addAll(this.roles);
         return Roles.from(roles);
     }
@@ -49,23 +49,19 @@ public class Roles {
         return Roles.from(removedRoles);
     }
 
-    public boolean isExistAdmin() {
+    public boolean hasAdmin() {
         return this.roles.stream()
                 .anyMatch(Role.ADMIN::equals);
     }
 
-    public boolean isExistUser() {
+    public boolean hasUser() {
         return this.roles.stream()
                 .anyMatch(Role.USER::equals);
     }
 
-    public boolean isOnlyUser() {
-        return isNoneAdmin() && isExistUser();
-    }
-
-    public boolean isNoneAdmin() {
+    public boolean hasRole(Role role) {
         return this.roles.stream()
-                .noneMatch(Role.ADMIN::equals);
+                .anyMatch(r -> r.equals(role));
     }
 
     public int count() {

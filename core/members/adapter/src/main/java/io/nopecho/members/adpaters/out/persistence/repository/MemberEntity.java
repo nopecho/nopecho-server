@@ -8,13 +8,16 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.annotation.Version;
+import org.springframework.data.relational.core.mapping.MappedCollection;
 import org.springframework.data.relational.core.mapping.Table;
 
 import java.time.LocalDateTime;
+import java.util.Set;
+import java.util.stream.Collectors;
 
-@Table("members")
 @Getter
 @AllArgsConstructor(access = AccessLevel.PROTECTED)
+@Table("members")
 public class MemberEntity {
 
     @Id
@@ -24,6 +27,8 @@ public class MemberEntity {
     private final String phoneNumber;
     private final String countryCode;
     private final Boolean isAgreeMarketing;
+    @MappedCollection(idColumn = "member_id")
+    private final Set<RoleEntity> roles;
 
     @CreatedDate
     private final LocalDateTime createdAt;
@@ -33,6 +38,7 @@ public class MemberEntity {
     private final Long version;
 
     public static MemberEntity from(Member member) {
+        Set<RoleEntity> roleEntities = roleForm(member);
         return new MemberEntity(
                 member.getId().get(),
                 member.getName().getValue(),
@@ -40,10 +46,17 @@ public class MemberEntity {
                 member.getPhoneNumber().getPhoneNumber(),
                 member.getPhoneNumber().getCountryCode(),
                 member.getAgreement().isMarketing(),
+                roleEntities,
                 null,
                 null,
                 null
         );
+    }
+
+    private static Set<RoleEntity> roleForm(Member member) {
+        return member.getRoles().stream()
+                .map(RoleEntity::from)
+                .collect(Collectors.toSet());
     }
 
     public Member toDomain() {
@@ -52,6 +65,14 @@ public class MemberEntity {
                 Name.of(this.name),
                 Email.of(this.email),
                 PhoneNumber.of(this.phoneNumber, this.countryCode),
+                rolesOf(),
                 Agreement.of(this.isAgreeMarketing));
+    }
+
+    private Roles rolesOf() {
+        Set<Role> roleSet = this.roles.stream()
+                .map(RoleEntity::getRole)
+                .collect(Collectors.toSet());
+        return Roles.from(roleSet);
     }
 }

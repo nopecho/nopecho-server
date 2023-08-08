@@ -12,7 +12,7 @@ configure(subprojects.stream()
     dependencies {
         implementation 'org.springframework.boot:spring-boot-starter'
 
-        testImplementation 'org.springframework.boot:spring-boot-testcontainers'
+        testImplementation 'io.zonky.test:embedded-database-spring-test:2.3.0'
         testImplementation 'org.springframework.boot:spring-boot-starter-test'
         testImplementation 'org.mockito:mockito-inline:5.2.0'
     }
