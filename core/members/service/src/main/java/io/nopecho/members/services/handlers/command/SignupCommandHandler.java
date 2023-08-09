@@ -8,6 +8,7 @@ import io.nopecho.members.domain.Member;
 import io.nopecho.members.domain.Name;
 import io.nopecho.members.domain.PhoneNumber;
 import io.nopecho.members.events.MemberSignupEvent;
+import io.nopecho.members.services.handlers.command.validators.SignupValidators;
 import io.nopecho.members.services.ports.in.command.SignupCommand;
 import io.nopecho.members.services.ports.out.QueryMemberPort;
 import io.nopecho.members.services.ports.out.SaveMemberPort;
@@ -21,8 +22,8 @@ import org.springframework.transaction.annotation.Transactional;
 @RequiredArgsConstructor
 public class SignupCommandHandler implements CommandHandler<SignupCommand, MemberSignupEvent> {
 
+    private final SignupValidators validators;
     private final SaveMemberPort savePort;
-    private final QueryMemberPort queryPort;
 
     @Override
     public boolean canHandle(Command command) {
@@ -33,7 +34,7 @@ public class SignupCommandHandler implements CommandHandler<SignupCommand, Membe
     @Transactional
     @Override
     public MemberSignupEvent handle(SignupCommand command) {
-        validation(command);
+        validators.preValidation(command);
 
         Member member = Member.create(
                 Name.of(command.getName()),
@@ -42,19 +43,6 @@ public class SignupCommandHandler implements CommandHandler<SignupCommand, Membe
         );
 
         Member saved = savePort.save(member);
-
         return MemberSignupEvent.from(saved);
-    }
-
-    @Override
-    public void validation(SignupCommand command) {
-        Email email = Email.of(command.getEmail());
-        if (isDuplicateEmail(email)) {
-            throw new IllegalArgumentException("is exist email. email: " + email.getValue());
-        }
-    }
-
-    private boolean isDuplicateEmail(Email email) {
-        return queryPort.isExistEmail(email);
     }
 }
