@@ -27,6 +27,7 @@ public class MemberEntity {
     private final String phoneNumber;
     private final String countryCode;
     private final Boolean isAgreeMarketing;
+    private final Grade grade;
     @MappedCollection(idColumn = "member_id")
     private final Set<RoleEntity> roles;
 
@@ -46,6 +47,7 @@ public class MemberEntity {
                 member.getPhoneNumber().getPhoneNumber(),
                 member.getPhoneNumber().getCountryCode(),
                 member.getAgreement().isMarketing(),
+                member.getGrade(),
                 roleEntities,
                 null,
                 null,
@@ -65,6 +67,7 @@ public class MemberEntity {
                 Name.of(this.name),
                 Email.of(this.email),
                 PhoneNumber.of(this.phoneNumber, this.countryCode),
+                this.grade,
                 rolesOf(),
                 Agreement.of(this.isAgreeMarketing));
     }
