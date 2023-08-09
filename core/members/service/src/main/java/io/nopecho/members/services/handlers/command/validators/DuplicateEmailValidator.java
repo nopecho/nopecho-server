@@ -3,7 +3,7 @@ package io.nopecho.members.services.handlers.command.validators;
 import io.nopecho.command.Validator;
 import io.nopecho.members.domain.Email;
 import io.nopecho.members.services.ports.in.command.SignupCommand;
-import io.nopecho.members.services.ports.out.QueryMemberPort;
+import io.nopecho.members.services.ports.out.LoadMemberPort;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class DuplicateEmailValidator implements Validator<SignupCommand> {
 
-    private final QueryMemberPort queryPort;
+    private final LoadMemberPort loadMemberPort;
 
     @Override
     public void preValidation(SignupCommand command) {
@@ -29,6 +29,6 @@ public class DuplicateEmailValidator implements Validator<SignupCommand> {
     }
 
     private boolean isDuplicateEmail(Email email) {
-        return queryPort.isExistEmail(email);
+        return loadMemberPort.isExistEmail(email);
     }
 }

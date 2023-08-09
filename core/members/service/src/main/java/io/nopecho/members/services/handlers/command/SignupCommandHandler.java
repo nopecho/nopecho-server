@@ -10,7 +10,6 @@ import io.nopecho.members.domain.PhoneNumber;
 import io.nopecho.members.events.MemberSignupEvent;
 import io.nopecho.members.services.handlers.command.validators.SignupValidators;
 import io.nopecho.members.services.ports.in.command.SignupCommand;
-import io.nopecho.members.services.ports.out.QueryMemberPort;
 import io.nopecho.members.services.ports.out.SaveMemberPort;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
