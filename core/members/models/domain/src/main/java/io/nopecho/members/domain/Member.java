@@ -20,26 +20,48 @@ public class Member {
     @With
     private final PhoneNumber phoneNumber;
     @With
+    private final Grade grade;
+    @With
     private final Roles roles;
     @With
     private final Agreement agreement;
 
-    public static Member of(MemberId id, Name name, Email email, PhoneNumber phoneNumber, Roles roles, Agreement agreement) {
-        return new Member(id, name, email, phoneNumber, roles, agreement);
+    public static Member of(MemberId id,
+                            Name name,
+                            Email email,
+                            PhoneNumber phoneNumber,
+                            Grade grade,
+                            Roles roles,
+                            Agreement agreement) {
+        return new Member(id, name, email, phoneNumber, grade, roles, agreement);
     }
 
-    public static Member of(MemberId id, Name name, Email email, PhoneNumber phoneNumber, Roles roles) {
-        Agreement disagreement = Agreement.falseAll();
-        return new Member(id, name, email, phoneNumber, roles, disagreement);
+    public static Member create(Name name,
+                                Email email,
+                                PhoneNumber phoneNumber,
+                                Agreement agreement) {
+        return new Member(
+                MemberId.of(LongIdGenerator.gen()),
+                name,
+                email,
+                phoneNumber,
+                Grade.BRONZE,
+                Roles.create(),
+                agreement
+        );
     }
 
-    public static Member create(Name name, Email email, PhoneNumber phoneNumber, Agreement agreement) {
-        return new Member(MemberId.of(LongIdGenerator.gen()), name, email, phoneNumber, Roles.create(), agreement);
-    }
-
-    public static Member create(Name name, Email email, PhoneNumber phoneNumber) {
-        Agreement disagreement = Agreement.falseAll();
-        return new Member(MemberId.of(LongIdGenerator.gen()), name, email, phoneNumber, Roles.create(), disagreement);
+    public static Member create(Name name,
+                                Email email,
+                                PhoneNumber phoneNumber) {
+        return new Member(
+                MemberId.of(LongIdGenerator.gen()),
+                name,
+                email,
+                phoneNumber,
+                Grade.BRONZE,
+                Roles.create(),
+                Agreement.falseAll());
     }
 
     public Set<Role> getRoles() {
@@ -91,7 +113,7 @@ public class Member {
         return this.roles.hasRole(role);
     }
 
-    public boolean isMultiRoles() {
+    public boolean hasMultiRoles() {
         return this.roles.count() > 1;
     }
 
@@ -107,5 +129,15 @@ public class Member {
     public Member disagreeMarketing() {
         Agreement disagreeMarketing = this.agreement.disagreeMarketing();
         return this.withAgreement(disagreeMarketing);
+    }
+
+    public Member upgrade() {
+        Grade upgrade = this.grade.up();
+        return this.withGrade(upgrade);
+    }
+
+    public Member downgrade() {
+        Grade downgrade = this.grade.down();
+        return this.withGrade(downgrade);
     }
 }
