@@ -4,10 +4,12 @@ rootProject.name = 'nopecho-server'
  * supports
  * - 시스템 내부에서 공통으로 사용되는 모듈
  */
-include 'supports'
-include 'supports:abstraction'
-include 'supports:utils'
-include 'supports:aop'
+include (
+        'supports',
+        'supports:abstraction',
+        'supports:utils',
+        'supports:aop'
+)
 
 /**
  * core
@@ -23,22 +25,28 @@ include 'supports:aop'
  */
 include 'core'
 
-include 'core:domain-events'
-include 'core:domain-events:adapter'
-include 'core:domain-events:service'
+include (
+        'core:domain-events',
+        'core:domain-events:adapter',
+        'core:domain-events:service'
+)
 
-include 'core:members'
-include 'core:members:adapter'
-include 'core:members:service'
-include 'core:members:models'
-include 'core:members:models:domain'
-include 'core:members:models:events'
+include (
+        'core:members',
+        'core:members:adapter',
+        'core:members:service',
+        'core:members:models',
+        'core:members:models:domain',
+        'core:members:models:events'
+)
 
-include 'core:auth'
-include 'core:auth:adapter'
-include 'core:auth:service'
-include 'core:auth:models'
-include 'core:auth:models:domain'
+include (
+        'core:auth',
+        'core:auth:adapter',
+        'core:auth:service',
+        'core:auth:models',
+        'core:auth:models:domain'
+)
 
 /**
  * app
@@ -48,6 +56,8 @@ include 'core:auth:models:domain'
  * - 독립적으로 실행 가능한 애플리케이션 모듈 계층
  * - core 계층의 adapter 모듈을 조합해서 실행 가능한 애플리케이션을 제공하는 책임
  */
-include 'app'
-include 'app:app-api'
+include (
+        'app',
+        'app:app-api'
+)
 
