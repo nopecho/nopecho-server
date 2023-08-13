@@ -71,6 +71,7 @@ include (
 )
 include 'core:members:infra:infra-data-jdbc'
 include 'core:members:interface:interface-web'
+include 'core:members:interface:interface-internal'
 
 include 'core:domain-events:infra:infra-data-jdbc'
 include 'core:domain-events:interface:interface-internal'
@@ -88,6 +89,5 @@ include(
         'sample:infra:infra-clients',
         'sample:interface:interface-web'
 )
-include 'core:members:interface:interface-internal'
-findProject(':core:members:interface:interface-internal')?.name = 'interface-internal'
+include 'commons:spring:data-jdbc'
 

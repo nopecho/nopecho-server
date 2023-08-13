@@ -27,3 +27,6 @@ ifneq ($(RUNNING_DB_CONTAINER),$(LOCAL_DB_CONTAINER))
 else
 	@echo "DB($(LOCAL_DB_CONTAINER)) is Already running."
 endif
+
+clean:
+	@find . -type d -name "out" -exec rm -rf {} +

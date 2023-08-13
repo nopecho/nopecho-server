@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class LoginService implements LoginUseCase {
+public class AccountLoginService implements LoginUseCase {
     @Override
     public void login(Method method) {
         log.info(method.name());

@@ -1,4 +1,4 @@
-package io.nopecho.domainevents.infra.jdbc.config.converter;
+package io.nopecho.commons.infra.jdbc.converters;
 
 import io.nopecho.utils.Serializer;
 import org.postgresql.util.PGobject;

@@ -1,4 +1,4 @@
-package io.nopecho.aop;
+package io.nopecho.commons.aop;
 
 import io.nopecho.event.EventPayload;
 import io.nopecho.event.VoidEvent;

@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class EventStoreService implements StoreDomainEventUseCase {
+public class DomainEventStoreService implements StoreDomainEventUseCase {
 
     private final SaveDomainEventPort savePort;
 

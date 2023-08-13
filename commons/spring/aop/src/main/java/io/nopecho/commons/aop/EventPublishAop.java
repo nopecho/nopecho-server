@@ -1,4 +1,4 @@
-package io.nopecho.aop;
+package io.nopecho.commons.aop;
 
 import io.nopecho.event.*;
 import lombok.RequiredArgsConstructor;
@@ -19,7 +19,7 @@ public class EventPublishAop {
 
     private final DomainEventPublisher eventPublisher;
 
-    @Around("@annotation(io.nopecho.aop.EventPublish)")
+    @Around("@annotation(io.nopecho.commons.aop.EventPublish)")
     public Object eventPublish(final ProceedingJoinPoint joinPoint) throws Throwable {
         try {
             Object eventPayload = joinPoint.proceed();

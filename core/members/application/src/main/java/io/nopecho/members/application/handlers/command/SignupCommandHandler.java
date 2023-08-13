@@ -1,8 +1,8 @@
 package io.nopecho.members.application.handlers.command;
 
-import io.nopecho.aop.EventPublish;
 import io.nopecho.command.Command;
 import io.nopecho.command.CommandHandler;
+import io.nopecho.commons.aop.EventPublish;
 import io.nopecho.members.application.handlers.command.validators.SignupValidators;
 import io.nopecho.members.application.ports.SaveMemberPort;
 import io.nopecho.members.application.usecase.command.SignupCommand;

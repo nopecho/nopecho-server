@@ -1,9 +1,4 @@
-server:
-  port: 9999
-
 spring:
-  profiles:
-    include: security
   datasource:
     url: jdbc:postgresql://localhost:5433/nopecho
     username: nopecho

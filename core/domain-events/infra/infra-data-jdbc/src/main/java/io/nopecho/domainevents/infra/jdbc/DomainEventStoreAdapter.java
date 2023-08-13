@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 @Slf4j
 @Component
 @RequiredArgsConstructor
-public class SpringDataEventStore implements SaveDomainEventPort {
+public class DomainEventStoreAdapter implements SaveDomainEventPort {
 
     private final DomainEventRepository repository;
 
