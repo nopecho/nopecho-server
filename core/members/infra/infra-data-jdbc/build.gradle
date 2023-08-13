@@ -1,0 +1,9 @@
+dependencies {
+    implementation(project(':core:members:domain'))
+    implementation(project(':core:members:application'))
+
+    implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
+    implementation 'org.postgresql:postgresql:42.2.27'
+
+    testImplementation 'io.zonky.test:embedded-database-spring-test:2.3.0'
+}

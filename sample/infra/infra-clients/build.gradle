@@ -1,0 +1,4 @@
+dependencies {
+    // domain
+    implementation "org.springframework.cloud:spring-cloud-starter-openfeign"
+}

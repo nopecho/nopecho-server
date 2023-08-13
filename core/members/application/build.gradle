@@ -1,0 +1,6 @@
+dependencies {
+    implementation(project(':commons:spring:aop'))
+    implementation(project(':core:members:domain'))
+
+    implementation 'org.springframework:spring-tx'
+}

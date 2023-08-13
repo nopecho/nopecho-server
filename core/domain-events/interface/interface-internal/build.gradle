@@ -1,0 +1,5 @@
+dependencies {
+    implementation project(':core:domain-events:application')
+
+    implementation 'org.springframework:spring-tx'
+}

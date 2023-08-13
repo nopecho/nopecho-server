@@ -1,22 +1,31 @@
 rootProject.name = 'nopecho-server'
 
 /**
- * supports
+ * commons
  * - 시스템 내부에서 공통으로 사용되는 모듈
  */
 include (
-        'supports',
-        'supports:abstraction',
-        'supports:utils',
-        'supports:aop'
+        'commons',
+        'commons:abstraction',
+        'commons:utils',
+        'commons:spring',
+        'commons:spring:aop',
+        'commons:spring:web'
 )
 
 /**
  * core
  * |-{domain}
- *   |-adapter
- *   |-models
- *   |-service-port
+ *   |-application
+ *   |-domain
+ *   |-interface
+ *      |-interface-web
+ *      |-interface-consumer
+ *   |-infra
+ *      |-infra-jdbc
+ *      |-infra-redis
+ *      |-infra-kafka
+ *      |-infra-aws
  * ...
  * - core: 시스템의 핵심 도메인이 존재하는 모듈 계층
  *  - adapter: 도메인의 외부 의존 해결에 대한 책임
@@ -27,37 +36,58 @@ include 'core'
 
 include (
         'core:domain-events',
-        'core:domain-events:adapter',
-        'core:domain-events:service'
+        'core:domain-events:application',
+        'core:domain-events:interface',
+        'core:domain-events:infra'
 )
 
 include (
         'core:members',
-        'core:members:adapter',
-        'core:members:service',
-        'core:members:models',
-        'core:members:models:domain',
-        'core:members:models:events'
+        'core:members:application',
+        'core:members:domain',
+        'core:members:interface',
+        'core:members:infra'
 )
 
 include (
         'core:auth',
-        'core:auth:adapter',
-        'core:auth:service',
-        'core:auth:models',
-        'core:auth:models:domain'
+        'core:auth:application',
+        'core:auth:domain',
+        'core:auth:interface',
+        'core:auth:infra',
 )
 
 /**
- * app
- * |-app-api
- * |-app-xx
- * |-app-xxx
+ * bootstrap
+ * |-bootstrap-api
+ * |-bootstrap-batch
+ * |-bootstrap-worker
  * - 독립적으로 실행 가능한 애플리케이션 모듈 계층
- * - core 계층의 adapter 모듈을 조합해서 실행 가능한 애플리케이션을 제공하는 책임
+ * - core 계층의 interface 모듈을 조합해서 독립적으로 실행 가능한 애플리케이션을 제공하는 책임
  */
 include (
-        'app',
-        'app:app-api'
+        'bootstrap',
+        'bootstrap:bootstrap-api'
 )
+include 'core:members:infra:infra-data-jdbc'
+include 'core:members:interface:interface-web'
+
+include 'core:domain-events:infra:infra-data-jdbc'
+include 'core:domain-events:interface:interface-internal'
+
+include 'core:auth:infra:infra-data-jdbc'
+include 'core:auth:interface:interface-web'
+
+include(
+        'sample',
+        'sample:interface',
+        'sample:infra',
+        'sample:domain',
+        'sample:application',
+        'sample:infra:infra-data-jdbc',
+        'sample:infra:infra-clients',
+        'sample:interface:interface-web'
+)
+include 'core:members:interface:interface-internal'
+findProject(':core:members:interface:interface-internal')?.name = 'interface-internal'
 

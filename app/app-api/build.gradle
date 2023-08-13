@@ -1,7 +1,0 @@
-dependencies {
-    implementation(project(':core:domain-events:adapter'))
-
-    implementation(project(':core:auth:adapter'))
-
-    implementation(project(':core:members:adapter'))
-}

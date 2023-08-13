@@ -1,0 +1,8 @@
+dependencies {
+    implementation(project(':core:domain-events:interface:interface-internal'))
+
+    implementation(project(':core:auth:interface:interface-web'))
+
+    implementation(project(':core:members:interface:interface-web'))
+    implementation(project(':core:members:interface:interface-internal'))
+}

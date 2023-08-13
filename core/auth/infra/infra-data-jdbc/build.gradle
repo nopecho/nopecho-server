@@ -1,0 +1,7 @@
+dependencies {
+    implementation project(':core:auth:domain')
+    implementation project(':core:members:domain')
+
+    implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
+    implementation 'org.postgresql:postgresql'
+}

@@ -1,0 +1,5 @@
+dependencies {
+    implementation(project(':core:members:application'))
+
+    implementation 'org.springframework:spring-tx'
+}

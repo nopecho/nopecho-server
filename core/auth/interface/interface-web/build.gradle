@@ -1,0 +1,10 @@
+dependencies {
+    implementation(project(':core:auth:application'))
+    implementation(project(':core:members:interface'))
+
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
+
+    annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+}
