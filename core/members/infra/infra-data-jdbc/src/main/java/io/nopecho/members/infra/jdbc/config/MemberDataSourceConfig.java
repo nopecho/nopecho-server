@@ -1,4 +1,4 @@
-package io.nopecho.domainevents.infra.jdbc.config;
+package io.nopecho.members.infra.jdbc.config;
 
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceProperties;
@@ -8,19 +8,19 @@ import org.springframework.context.annotation.Configuration;
 import javax.sql.DataSource;
 
 @Configuration
-public class DomainEventDataSource {
+public class MemberDataSourceConfig {
 
     @Bean
     @ConditionalOnMissingBean
-    public DataSource domainEventDataSource() {
-        return domainEventDataSourceProperties()
+    public DataSource memberDataSource() {
+        return memberDataSourceProperties()
                 .initializeDataSourceBuilder()
                 .build();
     }
 
     @Bean
     @ConditionalOnMissingBean
-    public DataSourceProperties domainEventDataSourceProperties() {
+    public DataSourceProperties memberDataSourceProperties() {
         return new DataSourceProperties();
     }
 }
