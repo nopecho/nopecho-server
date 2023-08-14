@@ -29,9 +29,9 @@ public class SecurityConfig {
 
     private void requestFilter(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests(request -> request
-                        .requestMatchers(securityProperty.getIgnorePathArray())
-                        .permitAll()
-                        .anyRequest()
+                .requestMatchers(securityProperty.getIgnorePathArray())
+                .permitAll()
+                .anyRequest()
                 .authenticated());
     }
 
