@@ -10,7 +10,8 @@ include (
         'commons:utils',
         'commons:spring',
         'commons:spring:aop',
-        'commons:spring:web'
+        'commons:spring:web',
+        'commons:spring:mono-data-jdbc'
 )
 
 /**
@@ -38,7 +39,9 @@ include (
         'core:domain-events',
         'core:domain-events:application',
         'core:domain-events:interface',
-        'core:domain-events:infra'
+        'core:domain-events:interface:interface-internal',
+        'core:domain-events:infra',
+        'core:domain-events:infra:infra-data-jdbc',
 )
 
 include (
@@ -46,7 +49,10 @@ include (
         'core:members:application',
         'core:members:domain',
         'core:members:interface',
-        'core:members:infra'
+        'core:members:interface:interface-web',
+        'core:members:interface:interface-internal',
+        'core:members:infra',
+        'core:members:infra:infra-data-jdbc',
 )
 
 include (
@@ -54,7 +60,9 @@ include (
         'core:auth:application',
         'core:auth:domain',
         'core:auth:interface',
+        'core:auth:interface:interface-web',
         'core:auth:infra',
+        'core:auth:infra:infra-data-jdbc',
 )
 
 /**
@@ -69,15 +77,6 @@ include (
         'bootstrap',
         'bootstrap:bootstrap-api'
 )
-include 'core:members:infra:infra-data-jdbc'
-include 'core:members:interface:interface-web'
-include 'core:members:interface:interface-internal'
-
-include 'core:domain-events:infra:infra-data-jdbc'
-include 'core:domain-events:interface:interface-internal'
-
-include 'core:auth:infra:infra-data-jdbc'
-include 'core:auth:interface:interface-web'
 
 include(
         'sample',
@@ -89,5 +88,4 @@ include(
         'sample:infra:infra-clients',
         'sample:interface:interface-web'
 )
-include 'commons:spring:data-jdbc'
 

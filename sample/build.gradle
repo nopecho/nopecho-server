@@ -1,4 +1,12 @@
-subprojects {
+def projects = subprojects.stream()
+        .filter(p -> p.parent.name != this.project.name)
+        .filter(p -> p.name != "domain")
+        .toList()
+
+configure(projects) {
+    apply plugin: "org.springframework.boot"
+    apply plugin: "io.spring.dependency-management"
+
     dependencies {
         implementation project(':commons:utils')
         implementation project(':commons:abstraction')

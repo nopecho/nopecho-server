@@ -1,5 +1,5 @@
 dependencies {
-    implementation(project(':commons:spring:data-jdbc'))
+    implementation(project(':commons:spring:mono-data-jdbc'))
 
     implementation(project(':core:domain-events:interface:interface-internal'))
     implementation(project(':core:domain-events:infra:infra-data-jdbc'))
