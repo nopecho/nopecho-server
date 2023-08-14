@@ -16,6 +16,5 @@ CREATE TABLE IF NOT EXISTS "members_roles"
 (
     member_id   BIGINT       NOT NULL,
     role        varchar(255) NOT NULL,
-    created_at  TIMESTAMPTZ DEFAULT NOW(),
-    modified_at TIMESTAMPTZ DEFAULT NOW()
+    created_at TIMESTAMPTZ DEFAULT NOW() NOT NULL
 );

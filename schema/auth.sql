@@ -12,6 +12,5 @@ CREATE TABLE IF NOT EXISTS "accounts_signatures"
     accounts_id BIGINT       NOT NULL,
     method      varchar(255) NOT NULL,
     token       varchar(255) NOT NULL,
-    created_at  TIMESTAMPTZ DEFAULT NOW(),
-    modified_at TIMESTAMPTZ DEFAULT NOW()
+    created_at TIMESTAMPTZ DEFAULT NOW() NOT NULL
 );

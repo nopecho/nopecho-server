@@ -1,6 +1,7 @@
 security:
   ignore-paths:
-    - "/login/**"
+    - "/login/oauth2/**"
+
 spring:
   security:
     oauth2:

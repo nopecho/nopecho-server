@@ -6,11 +6,7 @@ import io.nopecho.auth.domain.Token;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.relational.core.mapping.Table;
-
-import java.time.LocalDateTime;
 
 @Table("accounts_signatures")
 @Getter
@@ -19,17 +15,11 @@ public class SignatureEntity {
 
     private final Method method;
     private final String token;
-    @CreatedDate
-    private final LocalDateTime createdAt;
-    @LastModifiedDate
-    private final LocalDateTime modifiedAt;
 
     public static SignatureEntity from(Signature signature) {
         return new SignatureEntity(
                 signature.getMethod(),
-                signature.getToken().getValue(),
-                null,
-                null
+                signature.getToken().getValue()
         );
     }
 

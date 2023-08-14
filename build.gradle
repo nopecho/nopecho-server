@@ -9,7 +9,7 @@ plugins {
 group 'io.nopecho'
 version '1.0.0'
 
-configure(subprojects) {
+subprojects {
 
     apply plugin: "java-library"
     apply plugin: "io.freefair.lombok"

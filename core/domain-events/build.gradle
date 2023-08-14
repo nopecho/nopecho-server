@@ -1,4 +1,4 @@
-configure(subprojects) {
+subprojects {
     dependencies {
         implementation project(':commons:utils')
         implementation project(':commons:abstraction')

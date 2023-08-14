@@ -4,7 +4,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
@@ -21,17 +20,31 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http
-                .authorizeHttpRequests(request -> request
+        requestFilter(http);
+        oauth2Filter(http);
+
+        disable(http);
+        return http.build();
+    }
+
+    private void requestFilter(HttpSecurity http) throws Exception {
+        http.authorizeHttpRequests(request -> request
                         .requestMatchers(securityProperty.getIgnorePathArray())
                         .permitAll()
                         .anyRequest()
-                        .authenticated())
-                .oauth2Login(Customizer.withDefaults());
+                .authenticated());
+    }
 
+    private void oauth2Filter(HttpSecurity http) throws Exception {
+        http.oauth2Login(oath2 -> oath2
+                .loginPage("/login/oauth2/fallback")
+                .authorizationEndpoint(authorization -> authorization
+                        .baseUri("/login/oauth2/authorization")));
+    }
+
+    private void disable(HttpSecurity http) throws Exception {
         http.csrf(AbstractHttpConfigurer::disable)
                 .formLogin(AbstractHttpConfigurer::disable);
-        return http.build();
     }
 
     @Bean
