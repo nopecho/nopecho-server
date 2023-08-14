@@ -2,6 +2,7 @@ dependencies {
     implementation(project(':core:members:domain'))
     implementation(project(':core:members:application'))
 
+    implementation 'org.springframework.boot:spring-boot-starter-data-redis'
     implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
     implementation 'org.postgresql:postgresql:42.2.27'
 
