@@ -4,7 +4,7 @@ public interface QueryHandler {
 
     boolean canHandle(Query query);
 
-    QueryResult handle(Query query);
+    QueryResult<?, ?> handle(Query query);
 
     default <T extends Query> T tryCast(Query query, Class<T> classOfT) {
         if (canHandle(query)) {

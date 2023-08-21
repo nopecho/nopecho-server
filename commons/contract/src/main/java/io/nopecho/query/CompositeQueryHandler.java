@@ -19,11 +19,11 @@ public abstract class CompositeQueryHandler implements QueryHandler {
     }
 
     @Override
-    public QueryResult handle(Query Query) {
+    public QueryResult<?, ?> handle(Query Query) {
         return handleOrThrow(Query);
     }
 
-    private QueryResult handleOrThrow(Query Query) {
+    private QueryResult<?, ?> handleOrThrow(Query Query) {
         QueryHandler handler = findHandlerOrThrow(Query);
         try {
             return handler.handle(Query);

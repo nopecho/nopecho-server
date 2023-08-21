@@ -9,6 +9,6 @@ configure(projects) {
 
     dependencies {
         implementation project(':commons:utils')
-        implementation project(':commons:abstraction')
+        implementation project(':commons:contract')
     }
 }

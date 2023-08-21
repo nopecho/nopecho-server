@@ -1,9 +1,9 @@
-configure(subprojects) {
+subprojects {
     apply plugin: "org.springframework.boot"
     apply plugin: "io.spring.dependency-management"
 
     dependencies {
         implementation(project(':commons:utils'))
-        implementation(project(':commons:abstraction'))
+        implementation(project(':commons:contract'))
     }
 }

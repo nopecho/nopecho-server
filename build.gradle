@@ -9,17 +9,18 @@ plugins {
 group 'io.nopecho'
 version '1.0.0'
 
-subprojects {
-
-    apply plugin: "java-library"
-    apply plugin: "io.freefair.lombok"
-
-    sourceCompatibility = 17
-    targetCompatibility = 17
-
+allprojects {
     repositories {
         mavenCentral()
     }
+
+    sourceCompatibility = 17
+    targetCompatibility = 17
+}
+
+subprojects {
+    apply plugin: "java-library"
+    apply plugin: "io.freefair.lombok"
 
     dependencies {
         testImplementation 'org.assertj:assertj-core:3.24.2'

@@ -7,7 +7,7 @@ import lombok.Getter;
 
 @Getter
 @Builder
-public class TestQueryResult implements QueryResult {
+public class TestQueryResult implements QueryResult<String, String> {
 
     private String name;
 
@@ -19,5 +19,15 @@ public class TestQueryResult implements QueryResult {
     @Override
     public void selfValidation() {
         Throws.ifNullOrBlank(this.name, "test query name is can be not null or empty!");
+    }
+
+    @Override
+    public String onSuccess() {
+        return this.name;
+    }
+
+    @Override
+    public String onFail() {
+        return "fail";
     }
 }

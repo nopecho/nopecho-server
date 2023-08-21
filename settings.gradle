@@ -6,7 +6,7 @@ rootProject.name = 'nopecho-server'
  */
 include (
         'commons',
-        'commons:abstraction',
+        'commons:contract',
         'commons:utils',
         'commons:spring',
         'commons:spring:aop',
